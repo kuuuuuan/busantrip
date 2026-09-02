@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>釜山 4天自由行 Itinerary</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 圖示庫 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            busan: {
+              ocean: '#0055A5',
+              sky: '#4B9CD3',
+              sand: '#F7E7CE',
+              sunset: '#FF6B6B',
+              wave: '#E6F2FF'
+            }
+          },
+          fontFamily: {
+            sans: ['Noto Sans TC', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 釜山海洋背景波浪感 */
+    body {
+      background: linear-gradient(180deg, #E6F2FF 0%, #FFFFFF 100%);
+      min-height: 100vh;
+    }
+    
+    /* 造型翻牌與卡片微光影效果 */
+    .busan-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      border: 2px solid #E6F2FF;
+      box-shadow: 0 10px 25px -5px rgba(0, 85, 165, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .busan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px -5px rgba(0, 85, 165, 0.15);
+      border-color: #4B9CD3;
+    }
+
+    /* 天空膠囊列車形狀標籤 */
+    .capsule-badge {
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    
+    /* 大字報彈窗背景 */
+    .modal-backdrop {
+      background: rgba(0, 30, 60, 0.8);
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body class="text-slate-800 pb-20">
+
+  <!-- 頂部釜山形象 Header -->
+  <header class="relative bg-gradient-to-r from-busan-ocean to-busan-sky text-white py-10 px-6 shadow-lg overflow-hidden">
+    <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+      <i class="fa-solid fa-bridge-water"></i>
+    </div>
+    <div class="max-w-4xl mx-mx-auto text-center relative z-10 mx-auto">
+      <span class="inline-block bg-white/20 text-white text-xs px-3 py-1 rounded-full mb-2 tracking-widest font-bold uppercase">
+        <i class="fa-solid fa-plane-arrival mr-1"></i> Busan Travel Guide 2026
+      </span>
+      <h1 class="text-3xl md:text-4xl font-black tracking-wide">釜山 4天3夜自由行</h1>
+      <p class="text-busan-wave text-sm mt-2 font-medium">Kuan & Lily 的動態行程管理平台</p>
+    </div>
+  </header>
+
+  <!-- 天數切換 Tab (造型卡片式) -->
+  <main class="max-w-4xl mx-auto px-4 mt-6">
+    <div class="flex justify-between bg-white/80 p-2 rounded-2xl shadow-sm border border-busan-wave mb-6 overflow-x-auto">
+      <button onclick="switchDay(1)" id="tab-1" class="day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-busan-ocean bg-busan-wave shadow-sm">
+        Day 1
+      </button>
+      <button onclick="switchDay(2)" id="tab-2" class="day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-slate-500 hover:text-busan-sky">
+        Day 2
+      </button>
+      <button onclick="switchDay(3)" id="tab-3" class="day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-slate-500 hover:text-busan-sky">
+        Day 3
+      </button>
+      <button onclick="switchDay(4)" id="tab-4" class="day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-slate-500 hover:text-busan-sky">
+        Day 4
+      </button>
+    </div>
+
+    <!-- 行程動態載入區 -->
+    <div id="itinerary-container" class="space-y-6">
+      <!-- JS 會將 JSON 資料動態渲染至此 -->
+      <div class="text-center py-10 text-slate-400">
+        <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-busan-sky"></i>
+        <p>載入釜山行程資料中...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- 司機溝通大字報 Modal -->
+  <div id="taxi-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 text-center shadow-2xl relative border-4 border-busan-sky">
+      <button onclick="closeTaxiModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <div class="inline-block bg-busan-ocean text-white text-xs px-3 py-1 rounded-full mb-3 font-bold">
+        <i class="fa-solid fa-taxi mr-1"></i> 計程車大字報 (기사님께 보여주세요)
+      </div>
+      
+      <h3 id="modal-title" class="text-lg font-bold text-slate-600 mb-4">目的地</h3>
+      
+      <!-- 超大韓文文字展示區 -->
+      <div class="bg-slate-50 rounded-2xl p-6 mb-4 border border-slate-200">
+        <p id="modal-msg" class="text-2xl md:text-3xl font-black text-slate-900 leading-snug tracking-wide">
+          안녕하세요! 기사님, 이 주소로 가주세요.
+        </p>
+        <hr class="my-4 border-slate-200">
+        <p class="text-xs text-slate-400 mb-1">韓文地址 (Address):</p>
+        <p id="modal-address" class="text-sm font-bold text-busan-ocean select-all">
+          주소 정보
+        </p>
+      </div>
+      
+      <p class="text-xs text-slate-400">💡 提示：按住文字可複製地址或直接出示手機畫面給司機看。</p>
+    </div>
+  </div>
+
+  <!-- JavaScript 腳本 -->
+  <script>
+    let itineraryData = [];
+    let currentDay = 1;
+
+    // 1. 初始化：載入 JSON 檔案
+    async function fetchItinerary() {
+      try {
+        const response = await fetch('data/itinerary.json');
+        if (!response.ok) throw new Error('無法讀取行程資料');
+        itineraryData = await response.json();
+        renderDay(currentDay);
+      } catch (error) {
+        console.error(error);
+        document.getElementById('itinerary-container').innerHTML = `
+          <div class="bg-red-50 text-red-600 p-6 rounded-2xl text-center">
+            <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i>
+            <p>資料載入失敗，請確認 data/itinerary.json 檔案路徑是否正確。</p>
+          </div>
+        `;
+      }
+    }
+
+    // 2. 切換 Day Tab
+    function switchDay(day) {
+      currentDay = day;
+      document.querySelectorAll('.day-tab').forEach((tab, index) => {
+        if (index + 1 === day) {
+          tab.className = "day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-busan-ocean bg-busan-wave shadow-sm";
+        } else {
+          tab.className = "day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-slate-500 hover:text-busan-sky";
+        }
+      });
+      renderDay(day);
+    }
+
+    // 3. 渲染當天行程卡片
+    function renderDay(day) {
+      const container = document.getElementById('itinerary-container');
+      const dayData = itineraryData.filter(item => item.day === day);
+
+      if (dayData.length === 0) {
+        container.innerHTML = `<div class="text-center text-slate-400 py-10">尚無第 ${day} 天的行程資料。</div>`;
+        return;
+      }
+
+      container.innerHTML = dayData.map(spot => {
+        // 成員標籤 (Kuan / Lily)
+        const travelersHtml = spot.travelers ? spot.travelers.map(t => {
+          const bg = t === 'Kuan' ? 'bg-blue-100 text-blue-700' : 'bg-pink-100 text-pink-700';
+          return `<span class="capsule-badge ${bg} mr-1"><i class="fa-solid fa-user text-xs mr-1"></i>${t}</span>`;
+        }).join('') : '';
+
+        // 交通方式區塊
+        const transitHtml = spot.transit_options && spot.transit_options.length > 0 ? `
+          <div class="mt-4 pt-3 border-t border-dashed border-slate-200 space-y-2">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider"><i class="fa-solid fa-route mr-1"></i>交通與轉乘方式：</p>
+            ${spot.transit_options.map(t => `
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-sm">
+                <div class="flex justify-between items-center mb-1">
+                  <span class="font-bold text-busan-ocean"><i class="fa-solid font-normal fa-bus-simple mr-1"></i>${t.type}</span>
+                  <span class="text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">₩${t.cost_krw.toLocaleString()} (${t.duration_mins}分)</span>
+                </div>
+                <p class="text-xs text-slate-600">${t.route_description}</p>
+                ${t.board_zh ? `<p class="text-xs text-slate-400 mt-1">上車：${t.board_zh} (${t.board_kr})</p>` : ''}
+                ${t.transfer_zh ? `<p class="text-xs text-amber-600 mt-0.5">轉乘：${t.transfer_zh}</p>` : ''}
+                ${t.alight_zh ? `<p class="text-xs text-slate-400 mt-0.5">下車：${t.alight_zh} (${t.alight_kr})</p>` : ''}
+              </div>
+            `).join('')}
+          </div>
+        ` : '';
+
+        // 大字報按鈕
+        const taxiBtnHtml = spot.taxi_card ? `
+          <button onclick='openTaxiModal(${JSON.stringify(spot.taxi_card)})' class="mt-3 w-full bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-taxi text-amber-600 mr-2"></i>開啟計程車溝通大字報 (司機指示)
+          </button>
+        ` : '';
+
+        return `
+          <div class="busan-card p-5 relative">
+            <div class="flex justify-between items-start mb-2">
+              <span class="text-xs font-bold text-busan-sky bg-busan-wave px-3 py-1 rounded-full">
+                <i class="fa-regular fa-clock mr-1"></i>${spot.time}
+              </span>
+              <div>${travelersHtml}</div>
+            </div>
+
+            <h2 class="text-xl font-black text-slate-800 mb-1 flex items-center justify-between">
+              <span>${spot.spot_zh}</span>
+              ${spot.naver_link ? `
+                <a href="${spot.naver_link}" target="_blank" class="text-xs text-emerald-600 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg border border-emerald-200 ml-2 flex-shrink-0">
+                  <i class="fa-solid fa-map-location-dot mr-1"></i>Naver Map
+                </a>
+              ` : ''}
+            </h2>
+            <p class="text-xs font-medium text-slate-400 mb-3">${spot.spot_kr || ''}</p>
+
+            ${spot.notes ? `
+              <div class="bg-blue-50/50 p-3 rounded-xl border border-blue-100/60 text-xs text-slate-700 leading-relaxed">
+                <i class="fa-solid fa-circle-info text-busan-sky mr-1"></i><strong>注意事項：</strong> ${spot.notes}
+              </div>
+            ` : ''}
+
+            ${transitHtml}
+            ${taxiBtnHtml}
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 4. Modal 大字報控制
+    function openTaxiModal(cardData) {
+      document.getElementById('modal-title').innerText = cardData.title || '前往目的地';
+      document.getElementById('modal-msg').innerText = cardData.message || '안녕하세요! 이 주소로 가주세요.';
+      document.getElementById('modal-address').innerText = cardData.address_kr || '';
+      document.getElementById('taxi-modal').classList.remove('hidden');
+    }
+
+    function closeTaxiModal() {
+      document.getElementById('taxi-modal').classList.add('hidden');
+    }
+
+    // 頁面載入時執行 fetch
+    window.onload = fetchItinerary;
+  </script>
+</body>
+</html>

@@ -1,0 +1,832 @@
+[
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "02:50 - 06:10",
+    "travelers": ["Kuan"],
+    "spot_zh": "Kuan 搭機抵達釜山 (濟州航空 7C6154)",
+    "spot_kr": "김해국제공항 (제주항공 7C6154)",
+    "naver_link": "https://naver.me/G14B39Kq",
+    "notes": "Kuan 航班 02:50 TPE 起飛，06:10 抵達 PUS。辦理入境與提領行李。",
+    "transit_options": []
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "06:10 - 09:30",
+    "travelers": ["Kuan"],
+    "spot_zh": "機場消磨時間 & 等待 Lily 抵達",
+    "spot_kr": "김해국제공항",
+    "naver_link": "https://naver.me/G14B39Kq",
+    "notes": "Kuan 於金海機場便利商店、咖啡廳休閒休息，等待 Lily 入境 (Lily 航班 CI190 於 09:30 抵達)。",
+    "transit_options": []
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "06:15 - 09:30",
+    "travelers": ["Lily"],
+    "spot_zh": "Lily 搭機抵達釜山 (中華航空 CI190)",
+    "spot_kr": "김해국제공항 (대한항공/중화항공 CI190)",
+    "naver_link": "https://naver.me/G14B39Kq",
+    "notes": "Lily 航班 06:15 TPE 起飛，09:30 抵達 PUS。辦理入境與提領行李，與 Kuan 會合。",
+    "transit_options": []
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "10:00 - 11:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "雄獅旅行社接機前往飯店",
+    "spot_kr": "김해국제공항 -> 토요코인 부산중앙역",
+    "naver_link": "https://naver.me/FfMP43X9",
+    "notes": "會合後，約於 10:00 搭乘雄獅旅行社接駁車前往飯店寄存行李。",
+    "transit_options": [
+      {
+        "type": "接駁專車",
+        "route_description": "雄獅旅行社專車接送",
+        "board_zh": "金海國際機場",
+        "board_kr": "김해국제공항",
+        "board_en": "Gimhae International Airport",
+        "alight_zh": "東橫INN 釜山中央站",
+        "alight_kr": "토요코인 부산중앙역",
+        "alight_en": "Toyoko Inn Busan Jungang Station",
+        "cost_krw": 0,
+        "duration_mins": 45
+      }
+    ]
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "11:00 - 13:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "東橫 INN 飯店 (釜山中央站) 寄放行李",
+    "spot_kr": "토요코인 부산중앙역",
+    "naver_link": "https://naver.me/FfMP43X9",
+    "notes": "抵達飯店寄存行李、辦理相關手續。",
+    "transit_options": [
+      {
+        "type": "步行",
+        "route_description": "前往午餐地點",
+        "board_zh": "東橫INN 釜山中央站",
+        "board_kr": "토요코인 부산중앙역",
+        "board_en": "Toyoko Inn Busan Jungang",
+        "alight_zh": "萬石海帶湯",
+        "alight_kr": "만석미역",
+        "alight_en": "Manseok Seaweed Soup",
+        "cost_krw": 0,
+        "duration_mins": 10
+      }
+    ]
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "13:30 - 14:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "午餐：萬石海帶湯",
+    "spot_kr": "만석미역",
+    "naver_link": "https://naver.me/xXrX4X11",
+    "notes": "享用豐富的海帶湯午餐。",
+    "transit_options": [
+      {
+        "type": "公車",
+        "route_description": "搭乘 81、17 或 88 號公車（約 30 分鐘）",
+        "board_zh": "中央洞 / 中央站公車站",
+        "board_kr": "중앙동.부산우체국",
+        "board_en": "Jungang-dong / Jungang Station",
+        "alight_zh": "西面韓電",
+        "alight_kr": "서면한전",
+        "alight_en": "Seomyeon KEPCO",
+        "cost_krw": 1550,
+        "duration_mins": 30
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "直接搭計程車前往 MAMMOTH COFFEE",
+        "board_zh": "萬石海帶湯附近",
+        "board_kr": "식당 인근",
+        "board_en": "Restaurant Area",
+        "alight_zh": "MAMMOTH COFFEE 西面店",
+        "alight_kr": "매머드익스프레스 서면점",
+        "alight_en": "Mammoth Express Seomyeon",
+        "cost_krw": 8500,
+        "duration_mins": 18
+      }
+    ],
+    "taxi_card": {
+      "title": "前往 MAMMOTH COFFEE / 西面韓電",
+      "address_kr": "부산 부산진구 중앙대로 680 (서면한전 인근)",
+      "message": "안녕하세요! 기사님, 서면한전(매머드커피 부근)으로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "14:00 - 16:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "MAMMOTH COFFEE ＆ 田浦咖啡街/西面周邊逛街",
+    "spot_kr": "전포카페거리 & 서면",
+    "naver_link": "https://naver.me/FOZ3QVyD",
+    "notes": "視當天狀態彈性調整行程。下午茶：DIART Coffee & Moody Bread Market。",
+    "transit_options": [
+      {
+        "type": "地鐵",
+        "route_description": "地鐵 2號線：田浦站 (218) -> Centum City 站 (206)",
+        "board_zh": "田浦站",
+        "board_kr": "전포역",
+        "board_en": "Jeonpo Station",
+        "alight_zh": "Centum City 站 (新世界)",
+        "alight_kr": "센텀시티역",
+        "alight_en": "Centum City Station",
+        "cost_krw": 1600,
+        "duration_mins": 24
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "搭乘計程車直達新世界百貨",
+        "board_zh": "田浦咖啡街",
+        "board_kr": "전포카페거리",
+        "board_en": "Jeonpo Cafe Street",
+        "alight_zh": "新世界百貨 Centum City 店",
+        "alight_kr": "신세계백화점 센텀시티점",
+        "alight_en": "Shinsegae Centum City",
+        "cost_krw": 12000,
+        "duration_mins": 20
+      }
+    ],
+    "taxi_card": {
+      "title": "前往新世界百貨 (Centum City)",
+      "address_kr": "부산 해운대구 센텀남대로 35",
+      "message": "안녕하세요! 기사님, 센텀시티 신세계백화점으로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "17:20 - 20:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "新世界逛街 & 晚餐",
+    "spot_kr": "신세계백화점 센텀시티점",
+    "naver_link": "https://naver.me/5vI34xKL",
+    "notes": "晚餐備選：1. 巨大牛骨湯 (거대곰탕) 2. SPA Land 內簡易餐食 3. 回飯店吃 Puradak 炸雞。",
+    "transit_options": [
+      {
+        "type": "步行",
+        "route_description": "百貨館內直接連通至 SPA Land",
+        "board_zh": "新世界百貨館內",
+        "board_kr": "신세계백화점 내부",
+        "board_en": "Shinsegae Dept Inside",
+        "alight_zh": "SPA Land 入口 (1樓)",
+        "alight_kr": "스파랜드 입구",
+        "alight_en": "SPA Land Entrance",
+        "cost_krw": 0,
+        "duration_mins": 5
+      }
+    ]
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "20:00 - 21:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "SPA Land 汗蒸幕",
+    "spot_kr": "스파랜드 센텀시티",
+    "naver_link": "https://naver.me/xR0Y7x43",
+    "notes": "注意事項：需出示 VISIT BUSAN PASS (釜山通行證) 換票，每次使用限時 4 小時。",
+    "transit_options": [
+      {
+        "type": "計程車 / Uber",
+        "route_description": "SPA Land 門口搭車返回飯店",
+        "board_zh": "新世界 SPA Land",
+        "board_kr": "센텀시티 스파랜드",
+        "board_en": "SPA Land Centum City",
+        "alight_zh": "東橫INN 釜山中央站",
+        "alight_kr": "토요코인 부산중앙역",
+        "alight_en": "Toyoko Inn Busan Jungang Station",
+        "cost_krw": 16000,
+        "duration_mins": 30
+      },
+      {
+        "type": "地鐵",
+        "route_description": "Centum City 站 (206) -> 西面站轉乘 1號線 -> 中央站 (112)",
+        "board_zh": "Centum City 站",
+        "board_kr": "센텀시티역",
+        "board_en": "Centum City Station",
+        "alight_zh": "中央站 (17號出口)",
+        "alight_kr": "중앙역",
+        "alight_en": "Jungang Station",
+        "cost_krw": 1700,
+        "duration_mins": 35
+      }
+    ],
+    "taxi_card": {
+      "title": "返回飯店 (東橫INN 釜山中央站)",
+      "address_kr": "부산 중구 중앙대로 125 (토요코인 부산중앙역)",
+      "message": "안녕하세요! 기사님, 중앙역 토요코인 호텔로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 1,
+    "date": "2026-09-12",
+    "time": "21:30 - 22:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "宵夜：Puradak 炸雞 (푸라닭)",
+    "spot_kr": "푸라닭 치킨",
+    "naver_link": "https://naver.me/xxx",
+    "notes": "可提前預訂外送至飯店，或順路外帶/內用。（備案：改 Day 3 晚上前往富平店）",
+    "transit_options": []
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "08:00 - 09:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "從飯店出發前往海雲台",
+    "spot_kr": "해운대역",
+    "naver_link": "https://naver.me/xN8J9Xz3",
+    "notes": "建議早上 8:00 準時出發。大眾運輸約 1800 韓元；搭計程車約 2 萬韓元（約台幣 500 元）。",
+    "transit_options": [
+      {
+        "type": "地鐵",
+        "route_description": "1號線中央站 (112) -> 西面站轉乘 2號線 -> 海雲台站 (203)",
+        "board_zh": "中央站",
+        "board_kr": "중앙역",
+        "board_en": "Jungang Station",
+        "alight_zh": "海雲台站 (3號/5號出口)",
+        "alight_kr": "해운대역",
+        "alight_en": "Haeundae Station",
+        "cost_krw": 1800,
+        "duration_mins": 50
+      },
+      {
+        "type": "公車 + 地鐵",
+        "route_description": "搭乘 41 號公車至水營站，轉乘地鐵 2 號線至海雲台站",
+        "board_zh": "中央洞 / 釜山郵局",
+        "board_kr": "중앙동.부산우체국",
+        "board_en": "Jungang-dong",
+        "alight_zh": "海雲台站",
+        "alight_kr": "해운대역",
+        "alight_en": "Haeundae Station",
+        "cost_krw": 1800,
+        "duration_mins": 50
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "行經廣安大橋直達海雲台站周邊（約 NT$500）",
+        "board_zh": "東橫INN 釜山中央站",
+        "board_kr": "토요코인 부산중앙역",
+        "board_en": "Toyoko Inn Busan Jungang",
+        "alight_zh": "海雲台站 / 密陽血腸豬肉湯飯",
+        "alight_kr": "해운대역 / 밀양순대돼지국밥",
+        "alight_en": "Haeundae Station",
+        "cost_krw": 20000,
+        "duration_mins": 30
+      }
+    ],
+    "taxi_card": {
+      "title": "前往海雲台站",
+      "address_kr": "부산 해운대구 구남로 24 (밀양순대돼지국밥 인근)",
+      "message": "안녕하세요! 기사님, 해운대역 구남로로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "09:00 - 09:40",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "早餐：密陽血腸豬肉湯飯 / Standard Bread",
+    "spot_kr": "밀양순대돼지국밥 / 스탠다드브레드",
+    "naver_link": "https://naver.me/G14B39Kq",
+    "notes": "建議吃飽一點！下午行程較緊湊，午餐可能延後或簡略吃。",
+    "transit_options": []
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "09:40 - 11:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "海雲台商圈散策 & 前往膠囊列車搭乘處",
+    "spot_kr": "해운대 구남로 & 미포정거장",
+    "naver_link": "https://naver.me/FOZ3QVyD",
+    "notes": "路線：龜南路 -> hetras 香水店 -> 傳統市場 -> 橡樹似顏繪 -> OPS 麵包店 -> 米飛兔商店。沿途步行至膠囊列車約 30 分鐘，可買咖啡/小吃，需提早抵達預留排隊時間。",
+    "transit_options": [
+      {
+        "type": "步行",
+        "route_description": "沿龜南路與海灘旁木棧道散步至尾浦站",
+        "board_zh": "海雲台傳統市場",
+        "board_kr": "해운대 전통시장",
+        "board_en": "Haeundae Market",
+        "alight_zh": "海雲臺藍線公園 尾浦站",
+        "alight_kr": "해운대블루라인파크 미포정거장",
+        "alight_en": "Mipo Station",
+        "cost_krw": 0,
+        "duration_mins": 30
+      }
+    ]
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "12:00 - 12:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "搭乘天空膠囊列車 (尾浦站 -> 青沙浦站)",
+    "spot_kr": "해운대블루라인파크 미포정거장",
+    "naver_link": "https://naver.me/5vI34xKL",
+    "notes": "搭乘時間約 30 分鐘。務必預留現場排隊入場時間。",
+    "transit_options": [
+      {
+        "type": "觀光列車",
+        "route_description": "天空膠囊列車 (Sky Capsule)",
+        "board_zh": "尾浦站",
+        "board_kr": "미포정거장",
+        "board_en": "Mipo Station",
+        "alight_zh": "青沙浦站",
+        "alight_kr": "청사포정거장",
+        "alight_en": "Cheongsapo Station",
+        "cost_krw": 35000,
+        "duration_mins": 30
+      }
+    ]
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "12:30 - 13:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "青沙浦散策 & 返回車站周邊（古來思魚糕）",
+    "spot_kr": "청사포 & 고래사어묵 해운대점",
+    "naver_link": "https://naver.me/xR0Y7x43",
+    "notes": "建議沿步道散步返回（或刷 釜山PASS 免費搭海岸列車）。經過古來思魚糕海雲臺店 (고래사어묵) 可以買魚板當小點心。",
+    "transit_options": [
+      {
+        "type": "觀光列車 / 步行",
+        "route_description": "海岸列車 (Beach Train) 或沿步道散步",
+        "board_zh": "青沙浦站",
+        "board_kr": "청사포정거장",
+        "board_en": "Cheongsapo Station",
+        "alight_zh": "尾浦站 / 海雲台",
+        "alight_kr": "미포정거장",
+        "alight_en": "Mipo Station",
+        "cost_krw": 7000,
+        "duration_mins": 15
+      }
+    ]
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "13:30 - 14:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "午餐：小香燉牛排骨 / Solsot 釜飯",
+    "spot_kr": "소향갈비찜 / 솔솥 해운대점",
+    "naver_link": "https://naver.me/xXrX4X11",
+    "notes": "【優先】已預訂 13:30 小香燉牛排骨！(備案：Solsot 釜飯預約已滿，需看現場等候時間)。",
+    "transit_options": []
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "14:00 - 16:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "海理團路散步逛街 (해리단길)",
+    "spot_kr": "해리단길",
+    "naver_link": "https://naver.me/FOZ3QVyD",
+    "notes": "海雲台站 4 號出口周邊特色文青店家與選品店。",
+    "transit_options": [
+      {
+        "type": "地鐵",
+        "route_description": "地鐵 2號線：海雲台站 (203) -> 廣安站 (209) 約 35 分鐘",
+        "board_zh": "海雲台站",
+        "board_kr": "해운대역",
+        "board_en": "Haeundae Station",
+        "alight_zh": "廣安站",
+        "alight_kr": "광안역",
+        "alight_en": "Gwangan Station",
+        "cost_krw": 1600,
+        "duration_mins": 35
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "搭計程車直達 Working Holiday 咖啡廳（約 10 分鐘）",
+        "board_zh": "海理團路",
+        "board_kr": "해리단길",
+        "board_en": "Haeridan-gil",
+        "alight_zh": "Working Holiday Busan (民樂洞)",
+        "alight_kr": "워킹홀리데이 민락",
+        "alight_en": "Working Holiday Millak",
+        "cost_krw": 9000,
+        "duration_mins": 10
+      }
+    ],
+    "taxi_card": {
+      "title": "前往廣安里 Working Holiday",
+      "address_kr": "부산 수영구 광안해변로 278 (워킹홀리데이 민락)",
+      "message": "안녕하세요! 기사님, 광안리 민락동 워킹홀리데이 카페로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "16:30 - 18:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "廣安里 Working Holiday 看日落",
+    "spot_kr": "워킹홀리데이 민락",
+    "naver_link": "https://naver.me/FfMP43X9",
+    "notes": "廣安大橋第一排海景咖啡廳。無法預約訂位，抵達後需現場抽號碼牌！",
+    "transit_options": []
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "18:30 - 20:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "廣安里海灘周邊逛街",
+    "spot_kr": "광안리해수욕장",
+    "naver_link": "https://naver.me/G14B39Kq",
+    "notes": "備案：時間充裕亦可搭車前往新世界百貨（營業至 20:00）。",
+    "transit_options": []
+  },
+  {
+    "day": 2,
+    "date": "2026-09-13",
+    "time": "20:00 - 22:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "晚餐：廣安里 高潔 (고결 廣安木烤肉)",
+    "spot_kr": "고결 광안점",
+    "naver_link": "https://naver.me/xXrX4X11",
+    "notes": "營業時間：16:00 - 24:00。內用低消為三份肉，雙人套餐 57,000 韓元。",
+    "transit_options": [
+      {
+        "type": "計程車 / Uber",
+        "route_description": "廣安里搭乘計程車返回東橫 INN 飯店",
+        "board_zh": "高結 廣安木烤肉",
+        "board_kr": "고결 광안점",
+        "board_en": "Gogyeol Gwangan",
+        "alight_zh": "東橫INN 釜山中央站",
+        "alight_kr": "토요코인 부산중앙역",
+        "alight_en": "Toyoko Inn Busan Jungang Station",
+        "cost_krw": 14000,
+        "duration_mins": 22
+      },
+      {
+        "type": "地鐵",
+        "route_description": "地鐵 2號線金蓮山站/廣安站 -> 西面站轉乘 1號線 -> 中央站",
+        "board_zh": "金蓮山站 / 廣安站",
+        "board_kr": "금련산역 / 광안역",
+        "board_en": "Geumryeonsan / Gwangan",
+        "alight_zh": "中央站 (17號出口)",
+        "alight_kr": "중앙역",
+        "alight_en": "Jungang Station",
+        "cost_krw": 1700,
+        "duration_mins": 35
+      }
+    ],
+    "taxi_card": {
+      "title": "返回飯店 (東橫INN 釜山中央站)",
+      "address_kr": "부산 중구 중앙대로 125 (토요코인 부산중앙역)",
+      "message": "안녕하세요! 기사님, 중앙역 토요코인 호텔로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 3,
+    "date": "2026-09-14",
+    "time": "08:00 - 09:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "飯店早餐",
+    "spot_kr": "토요코인 부산중앙역 조식",
+    "naver_link": "https://naver.me/FfMP43X9",
+    "notes": "於東橫 INN 飯店享用早餐，準備出發前往影島。",
+    "transit_options": []
+  },
+  {
+  "day": 3,
+  "date": "2026-09-14",
+  "time": "09:00 - 10:00",
+  "travelers": ["Kuan", "Lily"],
+  "spot_zh": "前往影島：ARTE Museum Busan & P.ARK (順路 Momos Coffee)",
+  "spot_kr": "아르떼뮤지엄 부산 & 피아크 (모모스커피)",
+  "naver_link": "https://naver.me/xN8J9Xz3",
+  "notes": "主要目的地為 ARTE Museum Busan 與旁邊的 P.ARK。若搭公車需轉乘，於『影島大橋』轉乘 17 號公車時，可在 Momos Coffee 影島店前下車買咖啡再步行過去；搭計程車則約 20 分鐘直達博物館門口。",
+  "transit_options": [
+    {
+      "type": "公車 (轉乘方式 A：經影島大橋轉乘 17 號)",
+      "route_description": "搭 82 / 508 公車至『影島大橋』站，同站/對面轉乘 17 號公車至『海洋警察特攻隊』站下車",
+      "board_zh": "中央站 / 釜山郵局 (중앙동.부산우체국)",
+      "transfer_zh": "影島大橋 / 南浦站 (영도대교.남포역) 轉乘 17 號公車",
+      "alight_zh": "海洋警察特攻隊 / Momos Coffee (해양경찰특공대)",
+      "board_kr": "중앙동.부산우체국",
+      "transfer_kr": "영도대교.남포역 (17번 환승)",
+      "alight_kr": "해양경찰특공대 (아르떼뮤지엄/피아크/모모스부근)",
+      "board_en": "Jungang-dong / Jungang Station",
+      "transfer_en": "Yeongdodaegyo / Nampo Station (Transfer Bus 17)",
+      "alight_en": "Maritime Police Special Attack Force (ARTE Museum / P.ARK)",
+      "cost_krw": 1550,
+      "duration_mins": 40
+    },
+    {
+      "type": "公車 (直達方式 B：搭乘 186 或 66 號)",
+      "route_description": "從中央站步行至『瀛州洞』站搭乘 186 號，或至『南浦站』搭乘 66 號直達『國際水產物集下場』站",
+      "board_zh": "瀛州洞 (영주동) 或 南浦站 (남포역)",
+      "board_kr": "영주동 / 남포역",
+      "board_en": "Yeongju-dong / Nampo Station",
+      "alight_zh": "國際水產物集下場 / ARTE Museum 門口 (국제수산물집하장)",
+      "alight_kr": "국제수산물집하장 (아르떼뮤지엄 입구)",
+      "alight_en": "International Fish Market (ARTE Museum Entrance)",
+      "cost_krw": 1550,
+      "duration_mins": 35
+    },
+    {
+      "type": "計程車 / Uber",
+      "route_description": "從飯店叫車直達 ARTE Museum Busan / P.ARK 門口",
+      "board_zh": "東橫INN 釜山中央站",
+      "board_kr": "토요코인 부산중앙역",
+      "board_en": "Toyoko Inn Busan Jungang",
+      "alight_zh": "ARTE Museum Busan / P.ARK",
+      "alight_kr": "아르떼뮤지엄 부산 / 피아크",
+      "alight_en": "ARTE Museum Busan / P.ARK",
+      "cost_krw": 7500,
+      "duration_mins": 20
+    }
+  ],
+  "taxi_card": {
+    "title": "前往 ARTE Museum Busan & P.ARK",
+    "address_kr": "부산 영도구 해양로 247번길 35 (아르떼뮤지엄 부산)",
+    "message": "안녕하세요! 기사님, 영도 아르떼뮤지엄 부산(피아크 옆)으로 가주세요. 감사합니다."
+  }
+  },
+  {
+    "day": 3,
+    "date": "2026-09-14",
+    "time": "10:00 - 12:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "ARTE Museum Busan ＆ P.ARK 複合式麵包咖啡館",
+    "spot_kr": "아르떼뮤지엄 부산 & 피아크 카페&베이커리",
+    "naver_link": "https://naver.me/FFiLkL5y",
+    "notes": "沉浸式光影展 ARTE Museum 停留約 2 小時，旁邊為 P.ARK 海景複合式麵包店（營業時間 10:00-20:00）。",
+    "transit_options": [
+      {
+        "type": "公車 / 步行",
+        "route_description": "搭乘 66 或 186 號公車至影島大橋／南浦站周邊",
+        "board_zh": "國際水產物集下場",
+        "board_kr": "국제수산물집하장",
+        "board_en": "International Fish Market",
+        "alight_zh": "影島大橋 / 南浦站",
+        "alight_kr": "영도대교 / 남포역",
+        "alight_en": "Yeongdodaegyo / Nampo Station",
+        "cost_krw": 1550,
+        "duration_mins": 20
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "直接搭計程車前往影島大橋周邊餐廳",
+        "board_zh": "ARTE Museum / P.ARK",
+        "board_kr": "아르떼뮤지엄 부산",
+        "board_en": "ARTE Museum Busan",
+        "alight_zh": "ARP 蔬食餐廳 / 名聲一隻雞",
+        "alight_kr": "아르프 (ARP) / 명성닭한마리",
+        "alight_en": "ARP / Myeongseong Dakhanmari",
+        "cost_krw": 6500,
+        "duration_mins": 15
+      }
+    ],
+    "taxi_card": {
+      "title": "前往影島大橋周邊 (ARP餐廳)",
+      "address_kr": "부산 영도구 태종로99번길 35 (아르프 인근)",
+      "message": "안녕하세요! 기사님, 영도 봉래동 아르프 식당 근처로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 3,
+    "date": "2026-09-14",
+    "time": "12:30 - 13:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "午餐：ARP 蔬食料理 / 名聲一隻雞 (影島大橋周邊)",
+    "spot_kr": "아르프 (ARP) / 명성닭한마리",
+    "naver_link": "https://naver.me/G14B39Kq",
+    "notes": "ARP 為米其林必比登推薦質感蔬食餐廳；名聲一隻雞為熱湯鍋物（擇一）。",
+    "transit_options": [
+      {
+        "type": "步行",
+        "route_description": "步行前往 AREA6 選物店商圈",
+        "board_zh": "ARP / 名聲一隻雞",
+        "board_kr": "아르프 / 명성닭한마리",
+        "board_en": "ARP / Myeongseong",
+        "alight_zh": "AREA6 選物店",
+        "alight_kr": "아레아식스 (AREA6)",
+        "alight_en": "AREA6",
+        "cost_krw": 0,
+        "duration_mins": 5
+      }
+    ]
+  },
+  {
+    "day": 3,
+    "date": "2026-09-14",
+    "time": "13:30 - 14:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "AREA6 複合式選物店",
+    "spot_kr": "아레아식스 (AREA6)",
+    "naver_link": "https://naver.me/FOZ3QVyD",
+    "notes": "影島文創選物風格基地，預計停留 30 分鐘至 1 小時。",
+    "transit_options": [
+      {
+        "type": "公車",
+        "route_description": "搭乘 6、7、9、70、71 或 508 號公車前往白淺灘文化村",
+        "board_zh": "影島警察署",
+        "board_kr": "영도경찰서",
+        "board_en": "Yeongdo Police Station",
+        "alight_zh": "白淺灘文化村",
+        "alight_kr": "흰여울문화마을",
+        "alight_en": "Huinnyeoul Culture Village",
+        "cost_krw": 1550,
+        "duration_mins": 15
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "搭乘計程車直達白淺灘文化村入口",
+        "board_zh": "AREA6",
+        "board_kr": "아레아식스",
+        "board_en": "AREA6",
+        "alight_zh": "白淺灘文化村",
+        "alight_kr": "흰여울문화마을",
+        "alight_en": "Huinnyeoul Culture Village",
+        "cost_krw": 5000,
+        "duration_mins": 10
+      }
+    ],
+    "taxi_card": {
+      "title": "前往白淺灘文化村",
+      "address_kr": "부산 영도구 흰여울길 379 (흰여울문화마을)",
+      "message": "안녕하세요! 기사님, 영도 흰여울문화마을로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 3,
+    "date": "2026-09-14",
+    "time": "15:00 - 17:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "白淺灘文化村",
+    "spot_kr": "흰여울문화마을",
+    "naver_link": "https://naver.me/5vI34xKL",
+    "notes": "沿海崖壁小路散步、拍照、逛彩虹階段與海景咖啡廳，預計停留約 2 至 2.5 小時。",
+    "transit_options": [
+      {
+        "type": "公車",
+        "route_description": "搭乘 6、7、70、71 號公車返回南浦洞",
+        "board_zh": "白淺灘文化村",
+        "board_kr": "흰여울문화마을",
+        "board_en": "Huinnyeoul Culture Village",
+        "alight_zh": "南浦站 / 影島大橋",
+        "alight_kr": "남포역 / 영도대교",
+        "alight_en": "Nampo Station",
+        "cost_krw": 1550,
+        "duration_mins": 15
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "搭乘計程車跨橋至南浦洞商圈",
+        "board_zh": "白淺灘文化村",
+        "board_kr": "흰여울문화마을",
+        "board_en": "Huinnyeoul Culture Village",
+        "alight_zh": "南浦洞商圈 / 老奶奶冷麵",
+        "alight_kr": "남포동 / 원조함흥냉면",
+        "alight_en": "Nampo-dong",
+        "cost_krw": 5500,
+        "duration_mins": 10
+      }
+    ],
+    "taxi_card": {
+      "title": "前往南浦洞商圈",
+      "address_kr": "부산 중구 구덕로 34 (남포동/자갈치역 인근)",
+      "message": "안녕하세요! 기사님, 남포동 극장가(BIFF광장 부근)로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 3,
+    "date": "2026-09-14",
+    "time": "18:00 - 19:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "晚餐：老奶奶冷麵 / 南浦雪濃湯 (南浦站周邊)",
+    "spot_kr": "원조함흥냉면 / 남포설렁탕",
+    "naver_link": "https://naver.me/xR0Y7x43",
+    "notes": "傳統韓式冷麵或熱騰騰的大骨雪濃湯（擇一）。",
+    "transit_options": []
+  },
+  {
+    "day": 3,
+    "date": "2026-09-14",
+    "time": "19:00 - 21:00",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "南浦洞商圈散策 (光復路 & BIFF 廣場)",
+    "spot_kr": "광복로패션거리 & BIFF광장",
+    "naver_link": "https://naver.me/xXrX4X11",
+    "notes": "1. 光復路時尚街 -> EPT 球鞋店巷口轉彎 (赤峰街風格小店)。 2. BIFF 廣場必吃元祖黑糖餅。 3.【Day 1 補吃備案】Puradak 炸雞富平店（從 BIFF 廣場步行約 10 分鐘，營業至 23:00）。",
+    "transit_options": [
+      {
+        "type": "公車",
+        "route_description": "搭乘 81 或 103 號公車返回飯店（約 15 分鐘）",
+        "board_zh": "札嘎其站 / BIFF 廣場",
+        "board_kr": "자갈치역",
+        "board_en": "Jagalchi Station",
+        "alight_zh": "中央洞 / 釜山郵局",
+        "alight_kr": "중앙동.부산우체국",
+        "alight_en": "Jungang-dong",
+        "cost_krw": 1550,
+        "duration_mins": 15
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "叫車返回飯店（約 15 分鐘）",
+        "board_zh": "南浦洞 / BIFF 廣場",
+        "board_kr": "남포동",
+        "board_en": "Nampo-dong",
+        "alight_zh": "東橫INN 釜山中央站",
+        "alight_kr": "토요코인 부산중앙역",
+        "alight_en": "Toyoko Inn Busan Jungang Station",
+        "cost_krw": 4800,
+        "duration_mins": 15
+      },
+      {
+        "type": "步行",
+        "route_description": "沿光復路與中央路散步返回飯店",
+        "board_zh": "南浦洞",
+        "board_kr": "남포동",
+        "board_en": "Nampo-dong",
+        "alight_zh": "東橫INN 釜山中央站",
+        "alight_kr": "토요코인 부산중앙역",
+        "alight_en": "Toyoko Inn Busan Jungang Station",
+        "cost_krw": 0,
+        "duration_mins": 30
+      }
+    ],
+    "taxi_card": {
+      "title": "返回飯店 (東橫INN 釜山中央站)",
+      "address_kr": "부산 중구 중앙대로 125 (토요코인 부산중앙역)",
+      "message": "안녕하세요! 기사님, 중앙역 토요코인 호텔로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 4,
+    "date": "2026-09-15",
+    "time": "06:30 - 07:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "飯店早餐 (Optional)",
+    "spot_kr": "토요코인 부산중앙역 조식",
+    "naver_link": "https://naver.me/FfMP43X9",
+    "notes": "可彈性決定是否於飯店 1樓享用早餐並辦理退房辦理手續。",
+    "transit_options": []
+  },
+  {
+    "day": 4,
+    "date": "2026-09-15",
+    "time": "07:30 - 08:30",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "飯店 1F 集合搭乘接駁車前往機場",
+    "spot_kr": "토요코인 부산중앙역 1F",
+    "naver_link": "https://naver.me/FfMP43X9",
+    "notes": "準時於 07:30 在飯店大廳集合搭乘接駁車前往金海國際機場。",
+    "transit_options": [
+      {
+        "type": "接駁專車",
+        "route_description": "接駁車直達金海國際機場",
+        "board_zh": "東橫INN 釜山中央站",
+        "board_kr": "토요코인 부산중앙역",
+        "board_en": "Toyoko Inn Busan Jungang Station",
+        "alight_zh": "金海國際機場",
+        "alight_kr": "김해국제공항",
+        "alight_en": "Gimhae International Airport",
+        "cost_krw": 0,
+        "duration_mins": 45
+      }
+    ],
+    "taxi_card": {
+      "title": "前往金海國際機場",
+      "address_kr": "부산 강서구 공항진입로 108 (김해국제공항)",
+      "message": "안녕하세요! 기사님, 김해국제공항으로 가주세요. 감사합니다."
+    }
+  },
+  {
+    "day": 4,
+    "date": "2026-09-15",
+    "time": "08:30 - 10:30",
+    "travelers": ["Lily"],
+    "spot_zh": "Lily 機場報到 & 搭機回台 (中華航空 CI191)",
+    "spot_kr": "김해국제공항 (대한항공/중화항공 CI191)",
+    "naver_link": "https://naver.me/G14B39Kq",
+    "notes": "Lily 航班 CI191 預計 10:30 起飛，11:55 抵達台北桃園(TPE)。辦理登機與退稅手續。",
+    "transit_options": []
+  },
+  {
+    "day": 4,
+    "date": "2026-09-15",
+    "time": "08:30 - 10:50",
+    "travelers": ["Kuan"],
+    "spot_zh": "Kuan 機場報到 & 搭機回台 (釜山航空 BX793)",
+    "spot_kr": "김해국제공항 (에어부산 BX793)",
+    "naver_link": "https://naver.me/G14B39Kq",
+    "notes": "Kuan 航班 BX793 預計 10:50 起飛，12:35 抵達台北桃園(TPE)。【提醒：釜山航空誤點率較高，請留意登機口動態】。",
+    "transit_options": []
+  }
+]

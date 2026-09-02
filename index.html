@@ -3,139 +3,341 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>釜山 4天自由行 Itinerary</title>
+  <title>釜山 4天自由行</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome 圖示庫 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Google Fonts: 8-bit 點陣字型 + 內文「粉圓體 (jf open huninn)」 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            busan: {
-              ocean: '#0055A5',
-              sky: '#4B9CD3',
-              sand: '#F7E7CE',
-              sunset: '#FF6B6B',
-              wave: '#E6F2FF'
+            pixel: {
+              cream: '#FAF3D3',    /* 主頁面奶白背景色 */
+              card: '#FFFFFF',     /* 卡片純白底色 */
+              blue: '#38647A',     /* Banner 點陣藍主體色 */
+              sky: '#5389A3',      /* 次要藍/網點藍 */
+              red: '#ED4C4C',      /* 懷舊點陣紅 */
+              grass: '#8CBF26',    /* のびた草 綠色 */
+              darkgrass: '#6A9915'
             }
           },
           fontFamily: {
-            sans: ['Noto Sans TC', 'sans-serif'],
+            sans: ['"Zen Maru Gothic"', '"Noto Sans TC"', 'sans-serif'],
+            pixel: ['"DotGothic16"', '"Press Start 2P"', 'monospace'],
           }
         }
       }
     }
   </script>
   <style>
-    /* 釜山海洋背景波浪感 */
+    /* 1. 全局背景：奶白底色 + 半色調點陣 */
     body {
-      background: linear-gradient(180deg, #E6F2FF 0%, #FFFFFF 100%);
+      background-color: #FAF3D3;
+      background-image: radial-gradient(#E5D7A0 25%, transparent 25%);
+      background-size: 8px 8px;
+      color: #38647A;
       min-height: 100vh;
-    }
-    
-    /* 造型翻牌與卡片微光影效果 */
-    .busan-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      border: 2px solid #E6F2FF;
-      box-shadow: 0 10px 25px -5px rgba(0, 85, 165, 0.08);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .busan-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 30px -5px rgba(0, 85, 165, 0.15);
-      border-color: #4B9CD3;
+      image-rendering: pixelated;
+      position: relative;
     }
 
-    /* 天空膠囊列車形狀標籤 */
-    .capsule-badge {
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 0.85rem;
-      font-weight: 700;
+    /* 2. 大型一體化釜山膠囊列車滿版背景插畫 */
+    .busan-bg-illustration {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.38;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
     }
-    
-    /* 大字報彈窗背景 */
-    .modal-backdrop {
-      background: rgba(0, 30, 60, 0.8);
-      backdrop-filter: blur(4px);
+
+    /* 3. Banner 藍色主卡片 */
+    .banner-card {
+      background-color: #38647A;
+      background-image: 
+        repeating-linear-gradient(45deg, rgba(83, 137, 163, 0.25) 0, rgba(83, 137, 163, 0.25) 4px, transparent 4px, transparent 8px);
+      border: 4px solid #1E3A4A;
+      box-shadow: 0 8px 0px #1E3A4A;
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .banner-card::before, .banner-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 14px;
+      height: 24px;
+      background-color: #38647A;
+      border: 4px solid #1E3A4A;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    .banner-card::before { left: -14px; border-right: none; border-radius: 6px 0 0 6px; }
+    .banner-card::after { right: -14px; border-left: none; border-radius: 0 6px 6px 0; }
+
+    /* 4. 特徵造型：卡帶凸邊外形 (Pixel Jigsaw Card) */
+    .pixel-card {
+      background-color: #FFFFFF;
+      border: 4px solid #38647A;
+      box-shadow: 0 8px 0px #38647A;
+      border-radius: 16px;
+      position: relative;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .pixel-card::before, .pixel-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 14px;
+      height: 24px;
+      background-color: #FFFFFF;
+      border: 4px solid #38647A;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    .pixel-card::before { left: -14px; border-right: none; border-radius: 6px 0 0 6px; }
+    .pixel-card::after { right: -14px; border-left: none; border-radius: 0 6px 6px 0; }
+
+    .pixel-card:hover {
+      transform: translateY(-6px) rotate(-0.5deg);
+      box-shadow: 0 14px 0px #38647A;
+    }
+
+    /* 5. Day 切換區塊 & 高顯眼度 Tab 按鈕 */
+    .tab-container {
+      background-color: #38647A;
+      border: 4px solid #1E3A4A;
+      box-shadow: 0 6px 0 #1E3A4A;
+      border-radius: 20px;
+    }
+
+    .day-tab {
+      background-color: #FFFFFF;
+      color: #38647A;
+      border: 3px solid #1E3A4A;
+      box-shadow: 0 4px 0 #1E3A4A;
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'DotGothic16', monospace;
+    }
+    .day-tab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 0 #1E3A4A;
+      background-color: #EFE5B8;
+    }
+    .day-tab:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #1E3A4A;
+    }
+
+    .day-tab-active {
+      background-color: #ED4C4C !important;
+      color: #FFFFFF !important;
+      border-color: #1E3A4A !important;
+      box-shadow: 0 6px 0 #1E3A4A !important;
+      transform: translateY(-4px);
+    }
+
+    @keyframes pixel-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .animate-pixel-bounce {
+      animation: pixel-bounce 1.5s infinite ease-in-out;
     }
   </style>
 </head>
-<body class="text-slate-800 pb-20">
+<body class="pb-20 font-sans">
 
-  <!-- 頂部釜山形象 Header -->
-  <header class="relative bg-gradient-to-r from-busan-ocean to-busan-sky text-white py-10 px-6 shadow-lg overflow-hidden">
-    <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
-      <i class="fa-solid fa-bridge-water"></i>
-    </div>
-    <div class="max-w-4xl mx-mx-auto text-center relative z-10 mx-auto">
-      <span class="inline-block bg-white/20 text-white text-xs px-3 py-1 rounded-full mb-2 tracking-widest font-bold uppercase">
-        <i class="fa-solid fa-plane-arrival mr-1"></i> Busan Travel Guide 2026
-      </span>
-      <h1 class="text-3xl md:text-4xl font-black tracking-wide">釜山 4天3夜自由行</h1>
-      <p class="text-busan-wave text-sm mt-2 font-medium">Kuan & Lily 的動態行程管理平台</p>
+  <!-- 滿版一體化釜山海岸電車背景插畫 -->
+  <div class="busan-bg-illustration">
+    <svg class="w-full h-full object-cover" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- 遠景天空線與天空電線 -->
+      <path d="M0 180Q700 240 1400 180M0 210Q700 270 1400 210M0 240Q700 300 1400 240" stroke="#38647A" stroke-width="2.5" stroke-dasharray="10 4" opacity="0.5"/>
+
+      <!-- 遠景釜山大海與波浪層次 -->
+      <rect x="0" y="320" width="1400" height="280" fill="#38647A" fill-opacity="0.2"/>
+      <path d="M0 320h1400v12H0z" fill="#38647A" opacity="0.4"/>
+      <!-- 海浪質感波紋 -->
+      <rect x="100" y="360" width="120" height="8" fill="#38647A" opacity="0.25"/>
+      <rect x="400" y="420" width="180" height="8" fill="#38647A" opacity="0.25"/>
+      <rect x="850" y="380" width="150" height="8" fill="#38647A" opacity="0.25"/>
+      <rect x="1150" y="450" width="100" height="8" fill="#38647A" opacity="0.25"/>
+
+      <!-- 兩側大型電線桿 (完整細節構圖) -->
+      <g id="left-pole">
+        <rect x="80" y="100" width="20" height="600" fill="#38647A"/>
+        <rect x="30" y="160" width="120" height="14" fill="#38647A"/>
+        <rect x="10" y="220" width="160" height="14" fill="#38647A"/>
+        <!-- 變壓器與細部街景構構 -->
+        <rect x="105" y="240" width="30" height="50" fill="#1E3A4A"/>
+      </g>
+
+      <g id="right-pole">
+        <rect x="1280" y="120" width="20" height="580" fill="#38647A"/>
+        <rect x="1230" y="180" width="120" height="14" fill="#38647A"/>
+      </g>
+
+      <!-- 右側交通號誌桿與紅綠燈 -->
+      <g id="traffic-signals">
+        <rect x="1050" y="180" width="18" height="500" fill="#38647A"/>
+        <rect x="980" y="260" width="160" height="36" fill="#1E3A4A" rx="4"/>
+        <circle cx="1015" cy="278" r="11" fill="#ED4C4C"/>
+        <circle cx="1060" cy="278" r="11" fill="#EFE5B8"/>
+        <circle cx="1105" cy="278" r="11" fill="#38647A"/>
+      </g>
+
+      <!-- 精細繪製的釜山海濱膠囊列車 (Haeundae Beach Train) -->
+      <g id="busan-beach-train">
+        <!-- 主車身結構 -->
+        <rect x="220" y="440" width="760" height="220" rx="16" fill="#38647A"/>
+        <!-- 車身奶油白與復古紅雙色分層 -->
+        <rect x="235" y="500" width="730" height="140" fill="#FAF3D3"/>
+        <rect x="235" y="570" width="730" height="60" fill="#ED4C4C"/>
+
+        <!-- 乘客觀景車窗陣列 -->
+        <rect x="270" y="465" width="100" height="75" rx="4" fill="#1E3A4A"/>
+        <rect x="390" y="465" width="100" height="75" rx="4" fill="#1E3A4A"/>
+        <rect x="510" y="465" width="100" height="75" rx="4" fill="#1E3A4A"/>
+        <rect x="630" y="465" width="100" height="75" rx="4" fill="#1E3A4A"/>
+        <!-- 車頭弧形駕駛窗 -->
+        <rect x="760" y="460" width="180" height="90" rx="10" fill="#1E3A4A"/>
+
+        <!-- 窗戶反光光彩細節 -->
+        <path d="M280 475l40 55h-20l-40-55zm120 0l40 55h-20l-40-55zm120 0l40 55h-20l-40-55zm120 0l40 55h-20l-40-55z" fill="#5389A3" opacity="0.6"/>
+
+        <!-- 列車印字 -->
+        <rect x="280" y="585" width="180" height="24" rx="4" fill="#FAF3D3"/>
+        <text x="290" y="602" font-family="monospace" font-size="13" font-weight="bold" fill="#ED4C4C">BUSAN BLUE LINE</text>
+
+        <!-- 鐵軌車輪結構 -->
+        <circle cx="360" cy="660" r="26" fill="#1E3A4A"/>
+        <circle cx="360" cy="660" r="12" fill="#FAF3D3"/>
+        <circle cx="840" cy="660" r="26" fill="#1E3A4A"/>
+        <circle cx="840" cy="660" r="12" fill="#FAF3D3"/>
+      </g>
+
+      <!-- 道路馬路、鐵道與斑馬線 (畫面最底層) -->
+      <rect x="0" y="660" width="1400" height="240" fill="#38647A" opacity="0.25"/>
+      <!-- 雙黃線 -->
+      <path d="M0 700h1400M0 714h1400" stroke="#EFE5B8" stroke-width="5" stroke-dasharray="30 15"/>
+      <!-- 斑馬線斜向陣列 -->
+      <g fill="#FAF3D3" opacity="0.85">
+        <rect x="880" y="730" width="45" height="110" transform="skewX(-25)"/>
+        <rect x="970" y="730" width="45" height="110" transform="skewX(-25)"/>
+        <rect x="1060" y="730" width="45" height="110" transform="skewX(-25)"/>
+        <rect x="1150" y="730" width="45" height="110" transform="skewX(-25)"/>
+        <rect x="1240" y="730" width="45" height="110" transform="skewX(-25)"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 頂部釜山形象 Header (點陣藍色主體 Banner) -->
+  <header class="max-w-4xl mx-auto mt-6 px-4">
+    <div class="banner-card p-6 md:p-8 text-center relative overflow-hidden text-white">
+      
+      <!-- 8-Bit 邊角點陣點綴 -->
+      <div class="absolute top-2 left-2 text-[10px] text-pixel-cream/40 font-pixel leading-none select-none">■□<br>□■</div>
+      <div class="absolute top-2 right-2 text-[10px] text-pixel-cream/40 font-pixel leading-none select-none">□■<br>■□</div>
+
+      <!-- 頂部標籤 -->
+      <div class="inline-block bg-pixel-red text-white text-xs px-3 py-1 border-2 border-[#1E3A4A] rounded-md mb-3 font-pixel tracking-widest shadow-sm animate-pixel-bounce">
+        <i class="fa-solid fa-plane-arrival mr-1"></i> BUSAN TRAVEL GUIDE 2026
+      </div>
+      
+      <!-- 標題＆副標 -->
+      <h1 class="text-3xl md:text-5xl font-black font-pixel tracking-widest my-2 mb-4 text-pixel-cream drop-shadow-[0_4px_0_#1E3A4A]">
+        Busan ４天３夜自由行
+      </h1>
+
+      <!-- Banner 副標題與底部裝飾：替換為點陣海浪與小船 Pixel SVG -->
+      <div class="flex justify-between items-end px-6 mt-6 border-b-2 border-dashed border-pixel-cream/20 pb-2 select-none">
+        
+        <!-- SVG Pixel 海浪與小船 (左) -->
+        <svg class="w-8 h-5 opacity-90" viewBox="0 0 32 20" fill="#FAF3D3" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2h4v8h-4zm-8 8h16v3H4zm-4 3h24v4H0z"/>
+        </svg>
+
+        <!-- 中央標語 -->
+        <div class="flex items-center justify-center gap-3 text-pixel-cream/90 text-sm md:text-base font-pixel mt-3"> 
+          <span>Made By Kuan</span>
+        </div>
+
+        <!-- SVG Pixel 海浪與小船 (右) -->
+        <svg class="w-8 h-5 opacity-90" viewBox="0 0 32 20" fill="#FAF3D3" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2h4v8h-4zm-8 8h16v3H4zm-4 3h24v4H0z"/>
+        </svg>
+
+      </div>
     </div>
   </header>
 
-  <!-- 天數切換 Tab (造型卡片式) -->
-  <main class="max-w-4xl mx-auto px-4 mt-6">
-    <div class="flex justify-between bg-white/80 p-2 rounded-2xl shadow-sm border border-busan-wave mb-6 overflow-x-auto">
-      <button onclick="switchDay(1)" id="tab-1" class="day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-busan-ocean bg-busan-wave shadow-sm">
+  <!-- 天數切換 Tab (點陣藍底框 + 高對比切換按鈕) -->
+  <main class="max-w-4xl mx-auto px-4 mt-8">
+    <div class="tab-container flex justify-between gap-3 p-3 mb-8 overflow-x-auto">
+      <button onclick="switchDay(1)" id="tab-1" class="day-tab day-tab-active flex-1 min-w-[75px] py-3 text-center rounded-xl font-pixel">
         Day 1
       </button>
-      <button onclick="switchDay(2)" id="tab-2" class="day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-slate-500 hover:text-busan-sky">
+      <button onclick="switchDay(2)" id="tab-2" class="day-tab flex-1 min-w-[75px] py-3 text-center rounded-xl font-pixel">
         Day 2
       </button>
-      <button onclick="switchDay(3)" id="tab-3" class="day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-slate-500 hover:text-busan-sky">
+      <button onclick="switchDay(3)" id="tab-3" class="day-tab flex-1 min-w-[75px] py-3 text-center rounded-xl font-pixel">
         Day 3
       </button>
-      <button onclick="switchDay(4)" id="tab-4" class="day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-slate-500 hover:text-busan-sky">
+      <button onclick="switchDay(4)" id="tab-4" class="day-tab flex-1 min-w-[75px] py-3 text-center rounded-xl font-pixel">
         Day 4
       </button>
     </div>
 
     <!-- 行程動態載入區 -->
-    <div id="itinerary-container" class="space-y-6">
+    <div id="itinerary-container" class="space-y-8">
       <!-- JS 會將 JSON 資料動態渲染至此 -->
-      <div class="text-center py-10 text-slate-400">
-        <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-busan-sky"></i>
-        <p>載入釜山行程資料中...</p>
+      <div class="pixel-card p-10 text-center text-pixel-blue font-pixel">
+        <i class="fa-solid fa-spinner fa-spin text-4xl mb-3 text-pixel-red"></i>
+        <p class="text-base">載入釜山行程資料中...</p>
       </div>
     </div>
   </main>
 
   <!-- 司機溝通大字報 Modal -->
-  <div id="taxi-modal" class="fixed inset-0 modal-backdrop hidden z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 text-center shadow-2xl relative border-4 border-busan-sky">
-      <button onclick="closeTaxiModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl">
-        <i class="fa-solid fa-xmark"></i>
+  <div id="taxi-modal" class="fixed inset-0 bg-pixel-blue/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+    <div class="pixel-card max-w-lg w-full p-6 text-center relative border-4 border-pixel-blue bg-[#FFFFFF] shadow-2xl">
+      <button onclick="closeTaxiModal()" class="absolute top-3 right-3 text-pixel-blue hover:text-pixel-red text-2xl font-pixel transition-transform hover:rotate-90">
+        <i class="fa-solid fa-square-xmark"></i>
       </button>
       
-      <div class="inline-block bg-busan-ocean text-white text-xs px-3 py-1 rounded-full mb-3 font-bold">
+      <div class="inline-block bg-pixel-red text-white text-xs px-3 py-1 rounded border-2 border-pixel-blue mb-3 font-pixel">
         <i class="fa-solid fa-taxi mr-1"></i> 計程車大字報 (기사님께 보여주세요)
       </div>
       
-      <h3 id="modal-title" class="text-lg font-bold text-slate-600 mb-4">目的地</h3>
+      <h3 id="modal-title" class="text-lg font-bold text-pixel-blue mb-3 font-pixel">目的地</h3>
       
       <!-- 超大韓文文字展示區 -->
-      <div class="bg-slate-50 rounded-2xl p-6 mb-4 border border-slate-200">
-        <p id="modal-msg" class="text-2xl md:text-3xl font-black text-slate-900 leading-snug tracking-wide">
+      <div class="bg-pixel-cream/40 rounded-xl p-5 mb-4 border-3 border-pixel-blue shadow-inner">
+        <p id="modal-msg" class="text-2xl md:text-3xl text-slate-900 leading-snug tracking-wide font-pixel">
           안녕하세요! 기사님, 이 주소로 가주세요.
         </p>
-        <hr class="my-4 border-slate-200">
-        <p class="text-xs text-slate-400 mb-1">韓文地址 (Address):</p>
-        <p id="modal-address" class="text-sm font-bold text-busan-ocean select-all">
+        <hr class="my-3 border-dashed border-pixel-blue/30">
+        <p class="text-xs text-pixel-blue/60 mb-1 font-pixel">韓文地址 (Address):</p>
+        <p id="modal-address" class="text-sm text-pixel-red font-pixel select-all">
           주소 정보
         </p>
       </div>
       
-      <p class="text-xs text-slate-400">💡 提示：按住文字可複製地址或直接出示手機畫面給司機看。</p>
+      <p class="text-xs text-pixel-blue/70 font-pixel">💡 提示：按住文字可複製地址或直接出示手機畫面給司機看。</p>
     </div>
   </div>
 
@@ -154,8 +356,8 @@
       } catch (error) {
         console.error(error);
         document.getElementById('itinerary-container').innerHTML = `
-          <div class="bg-red-50 text-red-600 p-6 rounded-2xl text-center">
-            <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i>
+          <div class="pixel-card p-8 text-center text-pixel-red font-pixel">
+            <i class="fa-solid fa-triangle-exclamation text-3xl mb-2"></i>
             <p>資料載入失敗，請確認 data/itinerary.json 檔案路徑是否正確。</p>
           </div>
         `;
@@ -167,9 +369,9 @@
       currentDay = day;
       document.querySelectorAll('.day-tab').forEach((tab, index) => {
         if (index + 1 === day) {
-          tab.className = "day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-busan-ocean bg-busan-wave shadow-sm";
+          tab.classList.add('day-tab-active');
         } else {
-          tab.className = "day-tab flex-1 min-w-[70px] py-3 text-center rounded-xl font-bold transition-all duration-200 text-slate-500 hover:text-busan-sky";
+          tab.classList.remove('day-tab-active');
         }
       });
       renderDay(day);
@@ -181,31 +383,32 @@
       const dayData = itineraryData.filter(item => item.day === day);
 
       if (dayData.length === 0) {
-        container.innerHTML = `<div class="text-center text-slate-400 py-10">尚無第 ${day} 天的行程資料。</div>`;
+        container.innerHTML = `<div class="pixel-card p-10 text-center text-pixel-blue font-pixel">尚無第 ${day} 天的行程資料。</div>`;
         return;
       }
 
       container.innerHTML = dayData.map(spot => {
         // 成員標籤 (Kuan / Lily)
         const travelersHtml = spot.travelers ? spot.travelers.map(t => {
-          const bg = t === 'Kuan' ? 'bg-blue-100 text-blue-700' : 'bg-pink-100 text-pink-700';
-          return `<span class="capsule-badge ${bg} mr-1"><i class="fa-solid fa-user text-xs mr-1"></i>${t}</span>`;
+          const isKuan = t === 'Kuan';
+          const bgClass = isKuan ? 'bg-blue-100 text-blue-900 border-blue-900' : 'bg-pink-100 text-pink-900 border-pink-900';
+          return `<span class="inline-block border-2 px-2 py-0.5 rounded text-xs font-pixel mr-1 ${bgClass}"><i class="fa-solid fa-user text-[10px] mr-1"></i>${t}</span>`;
         }).join('') : '';
 
         // 交通方式區塊
         const transitHtml = spot.transit_options && spot.transit_options.length > 0 ? `
-          <div class="mt-4 pt-3 border-t border-dashed border-slate-200 space-y-2">
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider"><i class="fa-solid fa-route mr-1"></i>交通與轉乘方式：</p>
+          <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30 space-y-2">
+            <p class="text-xs font-pixel text-pixel-blue/70 uppercase"><i class="fa-solid fa-route mr-1"></i>交通與轉乘方式：</p>
             ${spot.transit_options.map(t => `
-              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-sm">
-                <div class="flex justify-between items-center mb-1">
-                  <span class="font-bold text-busan-ocean"><i class="fa-solid font-normal fa-bus-simple mr-1"></i>${t.type}</span>
-                  <span class="text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full">₩${t.cost_krw.toLocaleString()} (${t.duration_mins}分)</span>
+              <div class="bg-pixel-cream/30 p-3 rounded-lg border-2 border-pixel-blue text-sm font-sans">
+                <div class="flex justify-between items-center mb-1 font-pixel">
+                  <span class="text-pixel-red"><i class="fa-solid fa-bus-simple mr-1"></i>${t.type}</span>
+                  <span class="text-xs bg-pixel-blue/10 text-pixel-blue px-2 py-0.5 rounded border border-pixel-blue">₩${t.cost_krw.toLocaleString()} (${t.duration_mins}分)</span>
                 </div>
-                <p class="text-xs text-slate-600">${t.route_description}</p>
-                ${t.board_zh ? `<p class="text-xs text-slate-400 mt-1">上車：${t.board_zh} (${t.board_kr})</p>` : ''}
-                ${t.transfer_zh ? `<p class="text-xs text-amber-600 mt-0.5">轉乘：${t.transfer_zh}</p>` : ''}
-                ${t.alight_zh ? `<p class="text-xs text-slate-400 mt-0.5">下車：${t.alight_zh} (${t.alight_kr})</p>` : ''}
+                <p class="text-xs text-pixel-blue">${t.route_description}</p>
+                ${t.board_zh ? `<p class="text-xs text-slate-600 mt-1">上車：${t.board_zh} (${t.board_kr})</p>` : ''}
+                ${t.transfer_zh ? `<p class="text-xs text-pixel-red mt-0.5">轉乘：${t.transfer_zh}</p>` : ''}
+                ${t.alight_zh ? `<p class="text-xs text-slate-600 mt-0.5">下車：${t.alight_zh} (${t.alight_kr})</p>` : ''}
               </div>
             `).join('')}
           </div>
@@ -213,33 +416,33 @@
 
         // 大字報按鈕
         const taxiBtnHtml = spot.taxi_card ? `
-          <button onclick='openTaxiModal(${JSON.stringify(spot.taxi_card)})' class="mt-3 w-full bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center transition-colors">
-            <i class="fa-solid fa-taxi text-amber-600 mr-2"></i>開啟計程車溝通大字報 (司機指示)
+          <button onclick='openTaxiModal(${JSON.stringify(spot.taxi_card)})' class="mt-4 w-full bg-pixel-red hover:bg-red-600 text-white border-2 border-pixel-blue font-pixel text-xs py-2.5 px-4 rounded-xl flex items-center justify-center transition-transform hover:scale-[1.01] active:scale-95 shadow-[0_3px_0_#1E3A4A]">
+            <i class="fa-solid fa-taxi mr-2"></i>開啟計程車溝通大字報 (司機指示)
           </button>
         ` : '';
 
         return `
-          <div class="busan-card p-5 relative">
+          <div class="pixel-card p-5 md:p-6 relative">
             <div class="flex justify-between items-start mb-2">
-              <span class="text-xs font-bold text-busan-sky bg-busan-wave px-3 py-1 rounded-full">
+              <span class="text-xs font-pixel text-white bg-pixel-blue px-2.5 py-1 rounded border border-pixel-blue">
                 <i class="fa-regular fa-clock mr-1"></i>${spot.time}
               </span>
               <div>${travelersHtml}</div>
             </div>
 
-            <h2 class="text-xl font-black text-slate-800 mb-1 flex items-center justify-between">
+            <h2 class="text-xl md:text-2xl text-pixel-blue my-2 flex items-center justify-between font-sans">
               <span>${spot.spot_zh}</span>
               ${spot.naver_link ? `
-                <a href="${spot.naver_link}" target="_blank" class="text-xs text-emerald-600 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg border border-emerald-200 ml-2 flex-shrink-0">
+                <a href="${spot.naver_link}" target="_blank" class="text-xs font-pixel text-emerald-800 bg-emerald-200 hover:bg-emerald-300 px-2.5 py-1 rounded border-2 border-emerald-800 ml-2 flex-shrink-0 transition-transform hover:scale-105">
                   <i class="fa-solid fa-map-location-dot mr-1"></i>Naver Map
                 </a>
               ` : ''}
             </h2>
-            <p class="text-xs font-medium text-slate-400 mb-3">${spot.spot_kr || ''}</p>
+            <p class="text-xs font-pixel text-pixel-blue/60 mb-3">${spot.spot_kr || ''}</p>
 
             ${spot.notes ? `
-              <div class="bg-blue-50/50 p-3 rounded-xl border border-blue-100/60 text-xs text-slate-700 leading-relaxed">
-                <i class="fa-solid fa-circle-info text-busan-sky mr-1"></i><strong>注意事項：</strong> ${spot.notes}
+              <div class="bg-pixel-cream/50 p-3 rounded-lg border-2 border-pixel-blue text-xs text-pixel-blue leading-relaxed font-sans">
+                <i class="fa-solid fa-circle-info text-pixel-red mr-1"></i><strong>注意事項：</strong> ${spot.notes}
               </div>
             ` : ''}
 

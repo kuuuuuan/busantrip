@@ -307,6 +307,27 @@
     </div>
   </div>
 
+  <div id="station-modal" class="fixed inset-0 bg-pixel-blue/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+    <div class="pixel-card max-w-lg w-full p-5 relative border-4 border-pixel-blue bg-[#FFFFFF] shadow-2xl space-y-3">
+      <button onclick="closeStationModal()" class="absolute top-3 right-3 text-pixel-blue hover:text-pixel-red text-2xl font-pixel"><i class="fa-solid fa-square-xmark"></i></button>
+      <div class="inline-block bg-pixel-blue text-white text-xs px-3 py-1 rounded border border-pixel-blue font-pixel">
+        <i class="fa-solid fa-location-dot mr-1"></i> <span id="station-type-label">站點說明</span>
+      </div>
+      <h3 id="station-title" class="text-lg font-bold text-pixel-blue font-pixel">站點名稱</h3>
+      <div class="border-2 border-pixel-blue rounded-lg overflow-hidden bg-pixel-cream/30">
+        <img id="station-img" src="" alt="站點示意圖" class="w-full h-48 object-cover">
+      </div>
+      <p id="station-desc" class="text-xs text-pixel-blue leading-relaxed font-sans bg-pixel-cream/40 p-3 rounded-lg border border-pixel-blue/30"></p>
+    </div>
+  </div>
+
+  <div id="image-modal" onclick="closeImageModal()" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 cursor-pointer">
+    <div class="max-w-3xl w-full p-2 relative">
+      <img id="enlarged-image" src="" class="w-full max-h-[85vh] object-contain rounded-lg border-4 border-white shadow-2xl">
+      <p class="text-center text-white font-pixel text-xs mt-2">點擊任意處關閉</p>
+    </div>
+  </div>
+
   <script>
     let itineraryData = [];
     let presetExpenses = [];
@@ -329,7 +350,7 @@
           renderExpenses();
         }
       } catch (e) {
-        console.warn('未讀取到 data/expenses.json，僅展示現場花費。');
+        console.warn('未讀取到 data/expenses.json');
       }
     }
 
@@ -415,6 +436,71 @@
           return `<span class="inline-block border-2 px-2 py-0.5 rounded text-xs font-pixel mr-1 ${bgClass}"><i class="fa-solid fa-user text-[10px] mr-1"></i>${t}</span>`;
         }).join('') : '';
 
+        // 機場熱門設施與咖啡 (改用 Icon)
+        const airportFacilitiesHtml = spot.airport_facilities && spot.airport_facilities.length > 0 ? `
+          <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30 space-y-3">
+            <p class="text-xs font-pixel text-pixel-blue font-bold uppercase"><i class="fa-solid fa-plane-departure mr-1 text-pixel-red"></i>機場熱門設施與咖啡推薦：</p>
+            <div class="space-y-3">
+              ${spot.airport_facilities.map(cat => {
+                const iconClass = cat.category.includes('咖啡') || cat.category.includes('甜點') ? 'fa-mug-saucer' : 'fa-bag-shopping';
+                return `
+                  <div class="bg-pixel-cream/40 p-3 rounded-xl border-2 border-pixel-blue space-y-2">
+                    <h4 class="font-pixel text-xs text-pixel-red font-bold flex items-center gap-1.5">
+                      <i class="fa-solid ${iconClass}"></i>
+                      <span>${cat.category}</span>
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      ${cat.items.map(item => `
+                        <div class="bg-white p-2 rounded-lg border border-pixel-blue/40 text-xs font-sans space-y-0.5">
+                          <div class="flex justify-between items-center font-bold text-pixel-blue">
+                            <span>${item.name}</span>
+                            <span class="text-[10px] bg-pixel-blue/10 px-1.5 py-0.5 rounded font-pixel">${item.location}</span>
+                          </div>
+                          <p class="text-[11px] text-slate-600"><i class="fa-regular fa-clock mr-1"></i>${item.hours}</p>
+                          <p class="text-[11px] text-pixel-red/90">${item.desc}</p>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        ` : '';
+
+        // 下午茶推薦
+        const cafesHtml = spot.cafe_list && spot.cafe_list.length > 0 ? `
+          <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30 space-y-2">
+            <p class="text-xs font-pixel text-pixel-red uppercase flex items-center gap-1"><i class="fa-solid fa-mug-hot mr-1"></i>特色下午茶 / 麵包店推薦：</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              ${spot.cafe_list.map(cafe => `
+                <div class="bg-pixel-cream/40 p-3 rounded-xl border-2 border-pixel-blue space-y-1">
+                  <div class="flex justify-between items-start">
+                    <span class="font-bold text-xs text-pixel-blue font-sans">${cafe.name_zh}</span>
+                    ${cafe.naver_link ? `<a href="${cafe.naver_link}" target="_blank" class="text-[10px] font-pixel text-emerald-800 bg-emerald-200 px-1.5 py-0.5 rounded border border-emerald-800"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>` : ''}
+                  </div>
+                  <p class="text-[11px] text-pixel-blue/60 font-pixel">${cafe.name_kr}</p>
+                  <p class="text-[11px] text-slate-700 select-all font-sans"><i class="fa-solid fa-location-dot text-pixel-red mr-1"></i>${cafe.address_kr}</p>
+                  ${cafe.recommendation ? `<p class="text-[11px] text-pixel-red font-bold font-sans mt-1">★ ${cafe.recommendation}</p>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : '';
+
+        // 行程相片藝廊
+        const photosHtml = spot.photos && spot.photos.length > 0 ? `
+          <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30">
+            <p class="text-xs font-pixel text-pixel-blue/70 mb-2"><i class="fa-solid fa-camera mr-1"></i>景點相片與備忘：</p>
+            <div class="flex gap-2 overflow-x-auto pb-1">
+              ${spot.photos.map(p => `
+                <img src="${p}" onclick="openImageModal('${p}')" class="w-24 h-24 object-cover rounded-lg border-2 border-pixel-blue cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0">
+              `).join('')}
+            </div>
+          </div>
+        ` : '';
+
+        // 交通轉乘
         const transitHtml = spot.transit_options && spot.transit_options.length > 0 ? `
           <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30 space-y-2">
             <p class="text-xs font-pixel text-pixel-blue/70 uppercase"><i class="fa-solid fa-route mr-1"></i>交通與轉乘方式：</p>
@@ -423,6 +509,18 @@
               const startLabel = isNonVehicle ? '出發' : '上車';
               const endLabel = isNonVehicle ? '抵達' : '下車';
 
+              const renderStationText = (nameZh, nameKr, imgSrc, desc, labelType) => {
+                if (!nameZh) return '';
+                if (imgSrc) {
+                  return `
+                    <span onclick='openStationModal("${nameZh}", "${imgSrc}", "${desc || ''}", "${labelType}")' class="underline decoration-pixel-red decoration-2 cursor-pointer font-bold text-pixel-blue hover:text-pixel-red">
+                      ${nameZh} ${nameKr ? `(${nameKr})` : ''} <i class="fa-regular fa-image text-[10px]"></i>
+                    </span>
+                  `;
+                }
+                return `<span class="font-bold text-pixel-blue">${nameZh} ${nameKr ? `(${nameKr})` : ''}</span>`;
+              };
+
               return `
                 <div class="bg-pixel-cream/30 p-3 rounded-lg border-2 border-pixel-blue text-sm font-sans">
                   <div class="flex justify-between items-center mb-1 font-pixel">
@@ -430,9 +528,9 @@
                     <span class="text-xs bg-pixel-blue/10 text-pixel-blue px-2 py-0.5 rounded border border-pixel-blue">₩${t.cost_krw ? t.cost_krw.toLocaleString() : 0} (${t.duration_mins}分)</span>
                   </div>
                   <p class="text-xs text-pixel-blue">${t.route_description}</p>
-                  ${t.board_zh ? `<p class="text-xs text-slate-600 mt-1">${startLabel}：${t.board_zh} ${t.board_kr ? `(${t.board_kr})` : ''}</p>` : ''}
-                  ${t.transfer_zh ? `<p class="text-xs text-pixel-red mt-0.5">轉乘：${t.transfer_zh}</p>` : ''}
-                  ${t.alight_zh ? `<p class="text-xs text-slate-600 mt-0.5">${endLabel}：${t.alight_zh} ${t.alight_kr ? `(${t.alight_kr})` : ''}</p>` : ''}
+                  ${t.board_zh ? `<p class="text-xs text-slate-700 mt-1">${startLabel}：${renderStationText(t.board_zh, t.board_kr, t.board_img, t.board_desc, `${startLabel}站點`)}</p>` : ''}
+                  ${t.transfer_zh ? `<p class="text-xs text-slate-700 mt-0.5">轉乘：${renderStationText(t.transfer_zh, t.transfer_kr, t.transfer_img, t.transfer_desc, '轉乘站點')}</p>` : ''}
+                  ${t.alight_zh ? `<p class="text-xs text-slate-700 mt-0.5">${endLabel}：${renderStationText(t.alight_zh, t.alight_kr, t.alight_img, t.alight_desc, `${endLabel}站點`)}</p>` : ''}
                 </div>
               `;
             }).join('')}
@@ -463,6 +561,9 @@
             </h2>
             <p class="text-xs font-pixel text-pixel-blue/60 mb-3">${spot.spot_kr || ''}</p>
             ${spot.notes ? `<div class="bg-pixel-cream/50 p-3 rounded-lg border-2 border-pixel-blue text-xs text-pixel-blue leading-relaxed font-sans"><i class="fa-solid fa-circle-info text-pixel-red mr-1"></i><strong>注意事項：</strong> ${spot.notes}</div>` : ''}
+            ${airportFacilitiesHtml}
+            ${cafesHtml}
+            ${photosHtml}
             ${transitHtml}
             ${taxiBtnHtml}
           </div>
@@ -609,6 +710,27 @@
 
     function closeTaxiModal() {
       document.getElementById('taxi-modal').classList.add('hidden');
+    }
+
+    function openStationModal(title, imgSrc, desc, typeLabel) {
+      document.getElementById('station-title').innerText = title;
+      document.getElementById('station-img').src = imgSrc;
+      document.getElementById('station-desc').innerText = desc || '尚無備註說明';
+      document.getElementById('station-type-label').innerText = typeLabel || '站點說明';
+      document.getElementById('station-modal').classList.remove('hidden');
+    }
+
+    function closeStationModal() {
+      document.getElementById('station-modal').classList.add('hidden');
+    }
+
+    function openImageModal(imgSrc) {
+      document.getElementById('enlarged-image').src = imgSrc;
+      document.getElementById('image-modal').classList.remove('hidden');
+    }
+
+    function closeImageModal() {
+      document.getElementById('image-modal').classList.add('hidden');
     }
 
     window.onload = initApp;

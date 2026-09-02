@@ -49,7 +49,7 @@
       position: relative;
     }
 
-    /* 2. 大型一體化釜山膠囊列車滿版背景插畫 */
+    /* 2. 重置背景：超高大天空比例，列車縮小壓至左下角 */
     .busan-bg-illustration {
       position: fixed;
       inset: 0;
@@ -162,85 +162,80 @@
 </head>
 <body class="pb-20 font-sans">
 
-  <!-- 滿版一體化釜山海岸電車背景插畫 -->
+  <!-- 大天空高佔比、小型列車位於左下角的插畫背景 -->
   <div class="busan-bg-illustration">
-    <svg class="w-full h-full object-cover" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- 遠景天空線與天空電線 -->
-      <path d="M0 180Q700 240 1400 180M0 210Q700 270 1400 210M0 240Q700 300 1400 240" stroke="#38647A" stroke-width="2.5" stroke-dasharray="10 4" opacity="0.5"/>
+    <svg class="w-full h-full object-cover object-bottom" viewBox="0 0 1000 1200" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      
+      <!-- 1. 超高留白大天空 (佔據畫面上方 65% 以上) -->
+      <!-- 天空電線桿橫向線條 -->
+      <path d="M0 420Q500 480 1000 420M0 460Q500 520 1000 460M0 500Q500 560 1000 500" stroke="#38647A" stroke-width="2" stroke-dasharray="8 4" opacity="0.45"/>
 
-      <!-- 遠景釜山大海與波浪層次 -->
-      <rect x="0" y="320" width="1400" height="280" fill="#38647A" fill-opacity="0.2"/>
-      <path d="M0 320h1400v12H0z" fill="#38647A" opacity="0.4"/>
-      <!-- 海浪質感波紋 -->
-      <rect x="100" y="360" width="120" height="8" fill="#38647A" opacity="0.25"/>
-      <rect x="400" y="420" width="180" height="8" fill="#38647A" opacity="0.25"/>
-      <rect x="850" y="380" width="150" height="8" fill="#38647A" opacity="0.25"/>
-      <rect x="1150" y="450" width="100" height="8" fill="#38647A" opacity="0.25"/>
-
-      <!-- 兩側大型電線桿 (完整細節構圖) -->
-      <g id="left-pole">
-        <rect x="80" y="100" width="20" height="600" fill="#38647A"/>
-        <rect x="30" y="160" width="120" height="14" fill="#38647A"/>
-        <rect x="10" y="220" width="160" height="14" fill="#38647A"/>
-        <!-- 變壓器與細部街景構構 -->
-        <rect x="105" y="240" width="30" height="50" fill="#1E3A4A"/>
+      <!-- 2. 電線桿結構 (主要伸展在左側與天空) -->
+      <g id="left-utility-pole">
+        <rect x="50" y="250" width="16" height="750" fill="#38647A"/>
+        <rect x="10" y="320" width="100" height="12" fill="#38647A"/>
+        <rect x="0" y="380" width="130" height="12" fill="#38647A"/>
       </g>
 
-      <g id="right-pole">
-        <rect x="1280" y="120" width="20" height="580" fill="#38647A"/>
-        <rect x="1230" y="180" width="120" height="14" fill="#38647A"/>
+      <!-- 3. 大海海平線 (位置壓低至 y=760) -->
+      <rect x="0" y="760" width="1000" height="180" fill="#38647A" fill-opacity="0.22"/>
+      <path d="M0 760h1000v10H0z" fill="#38647A" opacity="0.4"/>
+      <!-- 海浪像素幾何層次 -->
+      <rect x="120" y="790" width="100" height="6" fill="#38647A" opacity="0.25"/>
+      <rect x="450" y="830" width="160" height="6" fill="#38647A" opacity="0.25"/>
+      <rect x="750" y="800" width="120" height="6" fill="#38647A" opacity="0.25"/>
+
+      <!-- 4. 右側路口號誌桿與紅綠燈 (完美符合海報構圖) -->
+      <g id="traffic-light">
+        <rect x="680" y="550" width="14" height="400" fill="#38647A"/>
+        <rect x="620" y="620" width="140" height="30" fill="#1E3A4A" rx="4"/>
+        <circle cx="650" cy="635" r="9" fill="#ED4C4C"/>
+        <circle cx="690" cy="635" r="9" fill="#EFE5B8"/>
+        <circle cx="730" cy="635" r="9" fill="#38647A"/>
       </g>
 
-      <!-- 右側交通號誌桿與紅綠燈 -->
-      <g id="traffic-signals">
-        <rect x="1050" y="180" width="18" height="500" fill="#38647A"/>
-        <rect x="980" y="260" width="160" height="36" fill="#1E3A4A" rx="4"/>
-        <circle cx="1015" cy="278" r="11" fill="#ED4C4C"/>
-        <circle cx="1060" cy="278" r="11" fill="#EFE5B8"/>
-        <circle cx="1105" cy="278" r="11" fill="#38647A"/>
+      <!-- 5. 左下角精緻小型海濱列車 (Busan Tram) -->
+      <!-- 寬度由原本的 760 縮小至 480，顯著降低占比並向左靠 -->
+      <g id="small-busan-tram">
+        <!-- 主車身 -->
+        <rect x="-40" y="810" width="500" height="150" rx="10" fill="#38647A"/>
+        <rect x="-30" y="850" width="480" height="95" fill="#FAF3D3"/>
+        <rect x="-30" y="900" width="480" height="45" fill="#ED4C4C"/> <!-- 下半部經典懷舊紅 -->
+
+        <!-- 觀景車窗 -->
+        <rect x="20" y="830" width="65" height="50" rx="3" fill="#1E3A4A"/>
+        <rect x="105" y="830" width="65" height="50" rx="3" fill="#1E3A4A"/>
+        <rect x="190" y="830" width="65" height="50" rx="3" fill="#1E3A4A"/>
+        <rect x="275" y="830" width="65" height="50" rx="3" fill="#1E3A4A"/>
+        <!-- 車頭駕駛窗 -->
+        <rect x="360" y="825" width="100" height="60" rx="6" fill="#1E3A4A"/>
+
+        <!-- 車窗光澤線 -->
+        <path d="M25 835l25 40h-12l-25-40zm85 0l25 40h-12l-25-40zm85 0l25 40h-12l-25-40zm85 0l25 40h-12l-25-40z" fill="#5389A3" opacity="0.6"/>
+
+        <!-- 列車車身標字 -->
+        <rect x="30" y="910" width="130" height="18" rx="3" fill="#FAF3D3"/>
+        <text x="36" y="923" font-family="monospace" font-size="9" font-weight="bold" fill="#ED4C4C">BUSAN TRAM</text>
+
+        <!-- 列車車輪 -->
+        <circle cx="80" cy="960" r="18" fill="#1E3A4A"/>
+        <circle cx="80" cy="960" r="8" fill="#FAF3D3"/>
+        <circle cx="400" cy="960" r="18" fill="#1E3A4A"/>
+        <circle cx="400" cy="960" r="8" fill="#FAF3D3"/>
       </g>
 
-      <!-- 精細繪製的釜山海濱膠囊列車 (Haeundae Beach Train) -->
-      <g id="busan-beach-train">
-        <!-- 主車身結構 -->
-        <rect x="220" y="440" width="760" height="220" rx="16" fill="#38647A"/>
-        <!-- 車身奶油白與復古紅雙色分層 -->
-        <rect x="235" y="500" width="730" height="140" fill="#FAF3D3"/>
-        <rect x="235" y="570" width="730" height="60" fill="#ED4C4C"/>
-
-        <!-- 乘客觀景車窗陣列 -->
-        <rect x="270" y="465" width="100" height="75" rx="4" fill="#1E3A4A"/>
-        <rect x="390" y="465" width="100" height="75" rx="4" fill="#1E3A4A"/>
-        <rect x="510" y="465" width="100" height="75" rx="4" fill="#1E3A4A"/>
-        <rect x="630" y="465" width="100" height="75" rx="4" fill="#1E3A4A"/>
-        <!-- 車頭弧形駕駛窗 -->
-        <rect x="760" y="460" width="180" height="90" rx="10" fill="#1E3A4A"/>
-
-        <!-- 窗戶反光光彩細節 -->
-        <path d="M280 475l40 55h-20l-40-55zm120 0l40 55h-20l-40-55zm120 0l40 55h-20l-40-55zm120 0l40 55h-20l-40-55z" fill="#5389A3" opacity="0.6"/>
-
-        <!-- 列車印字 -->
-        <rect x="280" y="585" width="180" height="24" rx="4" fill="#FAF3D3"/>
-        <text x="290" y="602" font-family="monospace" font-size="13" font-weight="bold" fill="#ED4C4C">BUSAN BLUE LINE</text>
-
-        <!-- 鐵軌車輪結構 -->
-        <circle cx="360" cy="660" r="26" fill="#1E3A4A"/>
-        <circle cx="360" cy="660" r="12" fill="#FAF3D3"/>
-        <circle cx="840" cy="660" r="26" fill="#1E3A4A"/>
-        <circle cx="840" cy="660" r="12" fill="#FAF3D3"/>
-      </g>
-
-      <!-- 道路馬路、鐵道與斑馬線 (畫面最底層) -->
-      <rect x="0" y="660" width="1400" height="240" fill="#38647A" opacity="0.25"/>
-      <!-- 雙黃線 -->
-      <path d="M0 700h1400M0 714h1400" stroke="#EFE5B8" stroke-width="5" stroke-dasharray="30 15"/>
-      <!-- 斑馬線斜向陣列 -->
+      <!-- 6. 極底部薄薄一層馬路與斑馬線 (避免地面過重) -->
+      <rect x="0" y="960" width="1000" height="240" fill="#38647A" opacity="0.25"/>
+      <!-- 馬路雙黃線 -->
+      <path d="M0 980h1000M0 990h1000" stroke="#EFE5B8" stroke-width="4" stroke-dasharray="24 12"/>
+      <!-- 斑馬線斜條紋 -->
       <g fill="#FAF3D3" opacity="0.85">
-        <rect x="880" y="730" width="45" height="110" transform="skewX(-25)"/>
-        <rect x="970" y="730" width="45" height="110" transform="skewX(-25)"/>
-        <rect x="1060" y="730" width="45" height="110" transform="skewX(-25)"/>
-        <rect x="1150" y="730" width="45" height="110" transform="skewX(-25)"/>
-        <rect x="1240" y="730" width="45" height="110" transform="skewX(-25)"/>
+        <rect x="520" y="1000" width="35" height="80" transform="skewX(-25)"/>
+        <rect x="585" y="1000" width="35" height="80" transform="skewX(-25)"/>
+        <rect x="650" y="1000" width="35" height="80" transform="skewX(-25)"/>
+        <rect x="715" y="1000" width="35" height="80" transform="skewX(-25)"/>
+        <rect x="780" y="1000" width="35" height="80" transform="skewX(-25)"/>
+        <rect x="845" y="1000" width="35" height="80" transform="skewX(-25)"/>
       </g>
     </svg>
   </div>
@@ -263,7 +258,7 @@
         Busan ４天３夜自由行
       </h1>
 
-      <!-- Banner 副標題與底部裝飾：替換為點陣海浪與小船 Pixel SVG -->
+      <!-- Banner 副標題與底部裝飾：點陣海浪與小船 Pixel SVG -->
       <div class="flex justify-between items-end px-6 mt-6 border-b-2 border-dashed border-pixel-cream/20 pb-2 select-none">
         
         <!-- SVG Pixel 海浪與小船 (左) -->

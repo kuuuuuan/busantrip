@@ -18,7 +18,7 @@
     "spot_zh": "機場消磨時間 & 等待 Lily 抵達",
     "spot_kr": "김해국제공항",
     "naver_link": "https://naver.me/GNRjwFwb",
-    "notes": "Kuan 於金海機場便利商店、咖啡廳休息，等待 Lily 入境 (Lily 航班 CI190 於 09:30 抵達)。<br>💡 <a href='https://www.airport.co.kr/gimhaechn/cms/frFacCon/facilityList.do?listGbn=1&MENU_ID=200&acd=A1102' target='_blank' class='underline font-bold text-pixel-blue hover:text-pixel-red'>查看金海機場國際航線完整設施列表</a>",
+    "notes": "Kuan 於金海機場便利商店、咖啡廳休息，等待 Lily 入境 (Lily 航班 CI190 於 09:30 抵達)。<br>＊ <a href='https://www.airport.co.kr/gimhaechn/cms/frFacCon/facilityList.do?listGbn=1&MENU_ID=200&acd=A1102' target='_blank' class='underline font-bold text-pixel-blue hover:text-pixel-red'>查看金海機場國際航線完整設施列表</a>",
     "airport_facilities": [
         {
         "category": "知名咖啡與甜點",
@@ -94,12 +94,11 @@
         "board_zh": "東橫INN 釜山中央站",
         "board_kr": "토요코인호텔 부산서면",
         "board_en": "Toyoko Inn Busan Jungang",
-        "board_img": "images/example.jpg",
         "board_desc": "從飯店大門右轉沿中央大道步行。",
         "alight_zh": "萬石海帶湯",
         "alight_kr": "만석미역 본점",
         "alight_en": "Manseok Seaweed Soup",
-        "alight_img": "images/example.jpg",
+        "alight_img": "images/萬石海帶湯.jpg",
         "alight_desc": "萬石海帶湯餐廳門口。",
         "cost_krw": 0,
         "duration_mins": 10
@@ -114,7 +113,7 @@
     "spot_zh": "午餐：萬石海帶湯",
     "spot_kr": "만석미역 본점",
     "naver_link": "https://naver.me/FEUp7W9g",
-    "notes": "享用海帶湯午餐。",
+    "notes": "享用午餐。（Kuan：烤鯖魚定食 / Lily：？）",
     "transit_options": [
       {
         "type": "公車",
@@ -122,15 +121,15 @@
         "board_zh": "瀛州洞 公車站",
         "board_kr": "영주동",
         "board_en": "Jungang-dong / Jungang Station",
-        "board_img": "images/example.jpg",
+        "board_img": "images/瀛州洞.jpg",
         "board_desc": "公車站牌位於瀛州洞天橋下方。",
         "alight_zh": "西面韓電",
         "alight_kr": "서면한전",
         "alight_en": "Seomyeon KEPCO",
-        "alight_img": "images/example.jpg",
+        "alight_img": "images/西面KEPCO.jpg",
         "alight_desc": "西面韓國電力公司大樓前公車站下車。",
         "cost_krw": 1550,
-        "duration_mins": 30
+        "duration_mins": 25
       },
       {
         "type": "計程車 / Uber",
@@ -138,21 +137,20 @@
         "board_zh": "萬石海帶湯附近",
         "board_kr": "만석미역 본점",
         "board_en": "Restaurant Area",
-        "board_img": "images/example.jpg",
         "board_desc": "餐廳門口主幹道旁上車。",
         "alight_zh": "MAMMOTH COFFEE 西面店",
-        "alight_kr": "매머드익스프레스 서면점",
+        "alight_kr": "매머드익스프레스 서면일번가점",
         "alight_en": "MAMMOTH COFFEE Seomyeon",
-        "alight_img": "images/example.jpg",
+        "alight_img": ["images/MAMMOTH_COFFEE.jpg", "images/薄巧.jpg"],
         "alight_desc": "東興大樓 1 樓咖啡廳門口。",
         "cost_krw": 8500,
         "duration_mins": 18
       }
     ],
     "taxi_card": {
-      "title": "前往 MAMMOTH COFFEE 西面店",
-      "address_kr": "부산 부산진구 신천대로62번길 34 동흥빌딩 1층",
-      "message": "안녕하세요! 기사님, 매머드익스프레스 서면점 으로 가주세요. 감사합니다."
+      "title": "前往 MAMMOTH COFFEE 西面店（搭至三井塔再步行前往）",
+      "address_kr": "부산 부산진구 중앙대로 672",
+      "message": "안녕하세요! 기사님, 삼정타워 으로 가주세요. 감사합니다."
     }
   },
   {
@@ -164,7 +162,7 @@
     "spot_kr": "전포카페거리 & 서면",
     "naver_link": "https://naver.me/Gq8m9c8F",
     "notes": "視當天狀態彈性調整行程。",
-    "photos": ["images/example.jpg"],
+    "photos": ["images/西面攻略.jpg"],
     "cafe_list": [
       {
         "name_zh": "DIART Coffee (디아트 커피 라림)",
@@ -188,15 +186,15 @@
         "board_zh": "田浦站",
         "board_kr": "전포역",
         "board_en": "Jeonpo Station",
-        "board_img": "images/example.jpg",
-        "board_desc": "田浦站 5號出口進站，搭乘 2號線往萇山 (Jangsan) 方向。",
+        "board_img": "images/田浦站.jpg",
+        "board_desc": "田浦站 4或6號出口進站，搭乘 2號綠線往萇山 (Jangsan) 方向。",
         "alight_zh": "Centum City 站 (新世界)",
         "alight_kr": "센텀시티역",
         "alight_en": "Centum City Station",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "Centum City 站下車，走12號出口可直通新世界百貨地下連通道。",
+        "alight_img": "images/新世界站.jpg",
+        "alight_desc": "Centum City 站下車，走12號出口可直通新世界百貨。",
         "cost_krw": 1600,
-        "duration_mins": 24
+        "duration_mins": 25
       },
       {
         "type": "計程車 / Uber",
@@ -204,12 +202,10 @@
         "board_zh": "田浦咖啡街",
         "board_kr": "전포카페거리",
         "board_en": "Jeonpo Cafe Street",
-        "board_img": "images/example.jpg",
         "board_desc": "建議在田浦主幹道 (전포대로) 旁招呼站搭乘。",
         "alight_zh": "新世界百貨 Centum City 店",
-        "alight_kr": "신세계백화점 센텀시티점",
+        "alight_kr": "신세계 센텀시티몰",
         "alight_en": "Shinsegae Centum City",
-        "alight_img": "images/example.jpg",
         "alight_desc": "百貨正門大廳前下車點。",
         "cost_krw": 12000,
         "duration_mins": 20
@@ -217,34 +213,32 @@
     ],
     "taxi_card": {
       "title": "前往新世界百貨 (Centum City)",
-      "address_kr": "부산 해운대구 센텀남대로 35",
-      "message": "안녕하세요! 기사님, 센텀시티 신세계백화점으로 가주세요. 감사합니다."
+      "address_kr": "부산 해운대구 센텀4로 15 , 1층",
+      "message": "안녕하세요! 기사님, 신세계 센텀시티몰 으로 가주세요. 감사합니다."
     }
   },
   {
     "day": 1,
     "date": "2026-09-12",
-    "time": "17:20 - 20:00",
+    "time": "17:20 - 19:50",
     "travelers": ["Kuan", "Lily"],
     "spot_zh": "新世界逛街 & 晚餐",
     "spot_kr": "신세계백화점 센텀시티점",
-    "naver_link": "https://naver.me/5vI34xKL",
+    "naver_link": "https://naver.me/IgJGRMT8",
     "notes": "晚餐備選：1. 巨大牛骨湯 (거대곰탕) 2. SPA Land 內簡易餐食 3. 回飯店吃 Puradak 炸雞。",
-    "photos": ["images/example.jpg"],
     "transit_options": [
       {
         "type": "步行",
-        "route_description": "百貨館內直接連通至 SPA Land",
+        "route_description": "SPA Land位於百貨內1F (Gate 4)",
         "board_zh": "新世界百貨館內",
         "board_kr": "신세계백화점 내부",
         "board_en": "Shinsegae Dept Inside",
-        "board_img": "images/example.jpg",
-        "board_desc": "百貨 1樓名品館側邊指引牌。",
+        "board_desc": "位於百貨內1F ，鄰近 Gate 4。",
         "alight_zh": "SPA Land 入口 (1樓)",
-        "alight_kr": "스파랜드 입구",
-        "alight_en": "SPA Land Entrance",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "SPA Land 售票大廳驗票口。",
+        "alight_kr": "센텀 스파랜드",
+        "alight_en": "SPA Land",
+        "alight_img": "images/spaland.jpg",
+        "alight_desc": "SPA Land 大廳兌換釜山 PASS。",
         "cost_krw": 0,
         "duration_mins": 5
       }
@@ -256,60 +250,63 @@
     "time": "20:00 - 21:30",
     "travelers": ["Kuan", "Lily"],
     "spot_zh": "SPA Land 汗蒸幕",
-    "spot_kr": "스파랜드 센텀시티",
-    "naver_link": "https://naver.me/xR0Y7x43",
-    "notes": "注意事項：需出示 VISIT BUSAN PASS (釜山通行證) 換票，每次使用限時 4 小時。",
-    "photos": ["images/example.jpg"],
+    "spot_kr": "센텀 스파랜드",
+    "naver_link": "https://naver.me/5Q372Aqt",
+    "notes": "出示釜山PASS 換票，限時 4 小時，營業至 22:00，最後入場時間為 21:00。若要吃炸雞需 21:30 去乘車。<br>搓澡服務在洗澡/泡澡區入口左手邊，三種價位35,000/50,000(含按摩)/90,000(含按摩&洗頭)",
+    "photos": [
+      "images/spaland.jpg",
+      "images/搓澡.jpg"
+    ],
     "transit_options": [
+        {
+            "type": "方案 A：先買炸雞再回飯店 (地鐵 / 計程車)",
+            "route_description": "［公車］從 Centum City 周邊搭乘 40 號（1,550₩）或 1001 號（2,100₩）公車至 <b>경남여중입구 慶南女中入口</b>。<br>［計程車］新世界門口直達炸雞店（約 18,000₩，車程約 30 分鐘）。",
+            "board_zh": "Centum City",
+            "board_kr": "센텀시티역",
+            "board_img": ["images/40上車.jpg","images/1001上車.jpg"],
+            "alight_zh": "PURADAK 炸雞 草樑店（營業至 23:00）",
+            "alight_kr": "푸라닭 부산초량점",
+            "alight_img":["images/40下車.jpg","images/炸雞草樑.jpg"],
+            "cost_krw": 1550,
+            "duration_mins": 40
+        },
+        {
+            "type": "方案 B：直接返回飯店休息 (地鐵 / 計程車)",
+            "route_description": "［公車］從 Centum City 周邊搭乘 40 號（1,550₩）公車至 <b>영주동 瀛州洞</b>。<br>［計程車］新世界門口直達飯店（約 18,000₩，車程約 35 分鐘）。",
+            "board_zh": "Centum City",
+            "board_kr": "센텀시티역",
+            "alight_zh": "東橫INN 釜山中央站",
+            "alight_kr": "토요코인 부산중앙역",
+            "alight_img":"images/飯店40下車.jpg",
+            "cost_krw": 1550,
+            "duration_mins": 50
+        }
+    ],
+    "taxi_cards": [
       {
-        "type": "計程車 / Uber",
-        "route_description": "SPA Land 門口搭車返回飯店",
-        "board_zh": "新世界 SPA Land",
-        "board_kr": "센텀시티 스파랜드",
-        "board_en": "SPA Land Centum City",
-        "board_img": "images/example.jpg",
-        "board_desc": "SPA Land 正門招呼站。",
-        "alight_zh": "東橫INN 釜山中央站",
-        "alight_kr": "토요코인 부산중앙역",
-        "alight_en": "Toyoko Inn Busan Jungang Station",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "飯店門口上客區。",
-        "cost_krw": 16000,
-        "duration_mins": 30
+        "button_label": "前往 PURADAK 炸雞草樑店",
+        "title": "前往 PURADAK 炸雞草樑店",
+        "address_kr": "부산 동구 고관로29번길 12 (푸라닭 부산초량점)",
+        "message": "안녕하세요! 기사님, 초량동 푸라닭 치킨으로 가주세요. 감사합니다."
       },
       {
-        "type": "地鐵",
-        "route_description": "Centum City 站 (206) -> 西面站轉乘 1號線 -> 中央站 (112)",
-        "board_zh": "Centum City 站",
-        "board_kr": "센텀시티역",
-        "board_en": "Centum City Station",
-        "board_img": "images/example.jpg",
-        "board_desc": "Centum City 地鐵站 12號入口。",
-        "alight_zh": "中央站 (17號出口)",
-        "alight_kr": "중앙역",
-        "alight_en": "Jungang Station",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "中央站 17號出口出站即達飯店。",
-        "cost_krw": 1700,
-        "duration_mins": 35
+        "button_label": "返回飯店 (東橫INN 釜山中央站)",
+        "title": "返回飯店 (東橫INN 釜山中央站)",
+        "address_kr": "부산 중구 중앙대로 125 (토요코인 부산중앙역)",
+        "message": "안녕하세요! 기사님, 중앙역 토요코인 부산중앙역 가주세요. 감사합니다."
       }
-    ],
-    "taxi_card": {
-      "title": "返回飯店 (東橫INN 釜山中央站)",
-      "address_kr": "부산 중구 중앙대로 125 (토요코인 부산중앙역)",
-      "message": "안녕하세요! 기사님, 중앙역 토요코인 호텔로 가주세요. 감사합니다."
-    }
+    ]
   },
   {
     "day": 1,
     "date": "2026-09-12",
     "time": "21:30 - 22:30",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "宵夜：Puradak 炸雞 (푸라닭)",
-    "spot_kr": "푸라닭 치킨",
-    "naver_link": "https://naver.me/xxx",
-    "notes": "可提前預訂外送至飯店，或順路外帶/內用。（備案：改 Day 3 晚上前往富平店）",
-    "photos": ["images/example.jpg"],
+    "spot_zh": "宵夜：PURADAK 炸雞 (釜山草樑店)",
+    "spot_kr": "푸라닭 부산초량점",
+    "naver_link": "https://naver.me/5bVQUhDT",
+    "notes": "地址位於부산 동구 고관로29번길 12。<br>【方案】1. SPA後順路至草樑店外帶。 2. 提前預訂外送至飯店。 <br>【備案】改 Day 3 晚上逛完 BIFF 廣場後前往富平店內用/外帶。",
+    "photos": ["images/炸雞草樑.jpg"],
     "transit_options": []
   },
   {

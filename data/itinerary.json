@@ -342,7 +342,6 @@
         "board_kr": "영주동",
         "board_en": "Yeongju dong",
         "board_img": "images/飯店40上車.jpg",
-        "board_desc": "天橋旁公車站上車。",
         "alight_zh": "雲村",
         "alight_kr": "운촌",
         "alight_en": "Unchon",
@@ -494,7 +493,7 @@
     "spot_zh": "海理團路散步逛街 (해리단길)",
     "spot_kr": "해리단길",
     "naver_link": "https://naver.me/FOZ3QVyD",
-    "notes": "海雲台站 4 號出口周邊特色文青店家與選品店。必買伴手禮：Busan Bada Sand(부산바다샌드)<br> <b>最晚16:30離開，建議搭乘計程車前往廣安里。</b>",
+    "notes": "海雲台站 4 號出口周邊特色文青店家與選品店。必買伴手禮：Busan Bada Sand(부산바다샌드)<br> <b>＊最晚16:30離開，建議搭乘計程車前往廣安里。</b>",
     "photos": ["images/海理團路.jpg"],
     "transit_options": [
       {
@@ -537,10 +536,10 @@
     "date": "2026-09-13",
     "time": "16:30 - 18:30",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "廣安里 Working Holiday 看日落（日落時間約18:10-18:40）",
+    "spot_zh": "廣安里 Working Holiday 看日落",
     "spot_kr": "워킹홀리데이 민락",
     "naver_link": "https://naver.me/FP8XeWYp",
-    "notes": "廣安大橋第一排海景咖啡廳。未預約訂位，抵達後需現場抽號碼牌！",
+    "notes": "日落時間約18:10-18:40；廣安大橋第一排海景咖啡廳。未預約訂位，抵達後需現場抽號碼牌！",
     "transit_options": []
   },
   {
@@ -563,21 +562,9 @@
     "spot_zh": "晚餐：廣安里 고결 高潔(烤肉)",
     "spot_kr": "고결 광안점",
     "naver_link": "https://naver.me/xXrX4X11",
-    "notes": "營業時間：16:00 - 24:00。主打稻草煙燻，內用低消為三份肉，雙人套餐 57,000 韓元。",
+    "notes": "營業時間：16:00 - 24:00。主打稻草煙燻，可點豬肉3份+大醬湯+石鍋拌飯/炒飯=約700台幣/人。",
     "photos": ["images/高潔牛肋骨.jpg","images/高潔.jpg"],
     "transit_options": [
-      {
-        "type": "計程車 / Uber",
-        "route_description": "廣安里地鐵站周邊搭乘計程車返回東橫 INN 飯店",
-        "board_zh": "廣安站 (2號線)",
-        "board_kr": "광안역 (2호선)",
-        "board_en": "Gwangan Station (Line 2)",
-        "alight_zh": "東橫INN 釜山中央站",
-        "alight_kr": "토요코인 부산중앙역",
-        "alight_en": "Toyoko Inn Busan Jungang Station",
-        "cost_krw": 14000,
-        "duration_mins": 25
-      },
       {
         "type": "地鐵",
         "route_description": "地鐵 2號綠線廣安站(208) → 西面站 (219/119)轉乘 1號橘線 → 中央站(112)",
@@ -614,6 +601,18 @@
         "alight_desc": "영주동 瀛州洞 下車。",
         "cost_krw": 1550,
         "duration_mins": 40
+      },
+      {
+        "type": "計程車 / Uber",
+        "route_description": "廣安里地鐵站周邊搭乘計程車返回東橫 INN 飯店",
+        "board_zh": "廣安站 (2號線)",
+        "board_kr": "광안역 (2호선)",
+        "board_en": "Gwangan Station (Line 2)",
+        "alight_zh": "東橫INN 釜山中央站",
+        "alight_kr": "토요코인 부산중앙역",
+        "alight_en": "Toyoko Inn Busan Jungang Station",
+        "cost_krw": 14000,
+        "duration_mins": 25
       }
     ],
     "taxi_card": {

@@ -628,9 +628,8 @@
     "travelers": ["Kuan", "Lily"],
     "spot_zh": "飯店早餐",
     "spot_kr": "토요코인 부산중앙역 조식",
-    "naver_link": "https://naver.me/FfMP43X9",
+    "naver_link": "https://naver.me/F2ZbDfjE",
     "notes": "於東橫 INN 飯店享用早餐，準備出發前往影島。",
-    "photos": ["images/example.jpg"],
     "transit_options": []
   },
   {
@@ -641,8 +640,8 @@
     "spot_zh": "前往影島：Momos Coffee",
     "spot_kr": "모모스커피 로스터리&커피바",
     "naver_link": "https://naver.me/GaldOYuq",
-    "notes": "至 Momos Coffee 影島店，為世界知名咖啡，適合做為伴手禮。",
-    "photos": ["images/example.jpg"],
+    "notes": "至 Momos Coffee 影島店，為世界知名咖啡，適合做為伴手禮。（可以買給媽）",
+    "photos": ["images/MOMOS.jpg"],
     "transit_options": [
       {
         "type": "公車",
@@ -655,7 +654,7 @@
         "alight_zh": "Homeplus站 / Momos Coffee",
         "alight_kr": "홈플러스 (아르떼뮤지엄/피아크/모모스부근)",
         "alight_en": "Homeplus",
-        "alight_img": "images/example.jpg",
+        "alight_img": "images/MOMOS下車.jpg",
         "alight_desc": "Homeplus 旁下車，步行至 Momos Coffee。",
         "cost_krw": 1550,
         "duration_mins": 8
@@ -671,7 +670,6 @@
     "spot_kr": "아르떼뮤지엄 부산",
     "naver_link": "https://naver.me/FIfsvnna",
     "notes": " 離開 Momos Coffee 影島店 → 轉乘公車/計程車至 ARTE Museum Busan。",
-    "photos": ["images/example.jpg"],
     "transit_options": [
       {
         "type": "公車",
@@ -762,8 +760,8 @@
     "spot_zh": "午餐： ARP 米其林蔬食料理 ",
     "spot_kr": "아르프 (ARP) ",
     "naver_link": "https://naver.me/GubwiGT0",
-    "notes": "ARP 為米其林必比登推薦質感蔬食餐廳，已預訂 12:30 。",
-    "photos": ["images/example.jpg"],
+    "notes": "ARP 為米其林必比登推薦蔬食餐廳，已預訂 12:30 (NaverMap)。<br> ［推薦］ 蕨菜義大利麵 (Bracken Pasta)、烤娃娃菜與蘑菇碎 (Grilled Napa Cabbage)",
+    "photos": ["images/ARP-1.jpg","images/ARP-2.jpg"],
     "transit_options": [
       {
         "type": "步行",
@@ -838,49 +836,74 @@
     "transit_options": [
       {
         "type": "公車",
-        "route_description": "搭乘 6、7、70、71 號公車返回南浦洞",
+        "route_description": "搭乘 영도구5、6、82、85 號公車返回南浦洞周邊",
         "board_zh": "白淺灘文化村",
         "board_kr": "흰여울문화마을",
         "board_en": "Huinnyeoul Culture Village",
-        "board_img": "images/example.jpg",
-        "board_desc": "文化村往南浦方向公車站牌。",
-        "alight_zh": "南浦站 / 影島大橋",
-        "alight_kr": "남포역 / 영도대교",
-        "alight_en": "Nampo Station",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "南浦地鐵站 6號出口前公車站。",
+        "board_img": "images/往南浦上車.jpg",
+        "board_desc": "文化村往南浦方向公車站牌，在 ANKO 白色建築（三明治咖啡廳）旁。",
+        "alight_zh": "影島大橋・南浦站",
+        "alight_kr": "영도대교.남포역",
+        "alight_en": "Yeongdodaegyo Bridge, Nampo Station",
+        "alight_img": ["images/往南浦下車-6.jpg","images/往南浦下車-82.jpg"],
+        "alight_desc": "過影島大橋後第一站下車，公車站牌就在樂天百貨光復店入口旁。",
         "cost_krw": 1550,
         "duration_mins": 15
       },
       {
         "type": "計程車 / Uber",
-        "route_description": "搭乘計程車跨橋至南浦地鐵站",
+        "route_description": "搭乘計程車跨影島大橋直達樂天百貨光復店",
         "board_zh": "白淺灘文化村",
         "board_kr": "흰여울문화마을",
         "board_en": "Huinnyeoul Culture Village",
-        "alight_zh": "南浦地鐵站",
-        "alight_kr": "남포역 (부산1호선)",
-        "alight_en": "Nampo Station (Busan Metro Line 1)",
-        "cost_krw": 6420,
+        "alight_zh": "樂天百貨光復店",
+        "alight_kr": "롯데백화점 광복점 아쿠아몰",
+        "alight_en": "Lotte Department Store Gwangbok",
+        "cost_krw": 6500,
         "duration_mins": 10
-      }
+        }
     ],
     "taxi_card": {
-    "title": "前往南浦地鐵站",
-    "address_kr": "부산 중구 구덕로 지하 12 (남포동1가)",
-    "message": "안녕하세요! 기사님, 남포역(1호선)으로 가주세요. 감사합니다."
+        "title": "前往樂天百貨光復店",
+        "address_kr": "부산 중구 중앙대로 2 (롯데백화점 광복점 아쿠아몰)",
+        "message": "안녕하세요! 기사님, 광복동 롯데백화점으로 가주세요. 감사합니다."
     }
   },
   {
     "day": 3,
     "date": "2026-09-14",
-    "time": "18:00 - 19:00",
+    "time": "17:30 - 18:20",
+    "travelers": ["Kuan", "Lily"],
+    "spot_zh": "樂天百貨光復店（樂天超市）",
+    "spot_kr": "롯데백화점 광복점 아쿠아몰",
+    "naver_link": "https://naver.me/5vctJ1jp",
+    "notes": "13F 免費觀景台可賞影島大橋，B1 連通樂天超市，節制購物，等等還會逛南浦洞。",
+    "photos": ["images/example.jpg"],
+    "transit_options": [
+        {
+        "type": "步行",
+        "route_description": "步行約 7 分鐘至晚餐地點：南浦雪濃湯",
+        "board_zh": "樂天百貨光復店",
+        "board_kr": "롯데백화점 광복점 아쿠아몰",
+        "board_en": "Lotte Department Store Gwangbok",
+        "alight_zh": "南浦雪濃湯",
+        "alight_kr": "남포설렁탕",
+        "alight_en": "Nampo Seolleongtang",
+        "cost_krw": 0,
+        "duration_mins": 7
+      }
+    ]
+  },
+  {
+    "day": 3,
+    "date": "2026-09-14",
+    "time": "18:20 - 19:00",
     "travelers": ["Kuan", "Lily"],
     "spot_zh": "晚餐： 南浦雪濃湯 (南浦站周邊)",
     "spot_kr": "남포설렁탕",
     "naver_link": "https://naver.me/GctrSsLb",
-    "notes": "推薦：",
-    "photos": ["images/example.jpg"],
+    "notes": "營業24小時，如果還不餓的話也可以晚點吃。<br>［推薦］招牌雪濃湯설렁탕 10,000₩、排骨蒸餃 갈비만두 3,000₩",
+    "photos": ["images/南浦雪濃湯.jpg"],
     "transit_options": []
   },
   {
@@ -888,57 +911,65 @@
     "date": "2026-09-14",
     "time": "19:00 - 21:00",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "南浦洞商圈散策 (光復路 & BIFF 廣場)",
+    "spot_zh": "南浦洞散策 (光復路 ＆ BIFF 廣場 ＆ 富平罐頭市場)",
     "spot_kr": "광복로패션거리 & BIFF광장",
     "naver_link": "https://naver.me/xXrX4X11",
-    "notes": "1. 光復路時尚街 -> EPT 球鞋店巷口轉彎 (赤峰街風格小店)。 2. BIFF 廣場必吃元祖黑糖餅。 3.【Day 1 補吃備案】Puradak 炸雞富平店（從 BIFF 廣場步行約 10 分鐘，營業至 23:00）。",
-    "photos": ["images/example.jpg"],
+    "notes": "1. 光復路時尚街 → EPT 球鞋店巷口轉彎 (赤峰街風格小店)。 <br>　　　　2. BIFF 廣場必吃元祖黑糖餅。  <br>　　　　3. 富平罐頭市場（（從 BIFF 廣場步行約 10 分鐘，夜市營業到23:30） <br>　　　　【備案】Puradak 炸雞富平店（罐頭市場旁，營業至 23:00）。",
+    "photos": ["images/南浦洞攻略.jpg"],
     "transit_options": [
       {
-        "type": "公車",
-        "route_description": "搭乘 81 或 103 號公車返回飯店（約 15 分鐘）",
-        "board_zh": "札嘎其站 / BIFF 廣場",
-        "board_kr": "자갈치역",
-        "board_en": "Jagalchi Station",
-        "board_img": "images/example.jpg",
-        "board_desc": "札嘎其站 7號出口前公車站。",
-        "alight_zh": "中央洞 / 釜山郵局",
-        "alight_kr": "중앙동.부산우체국",
-        "alight_en": "Jungang-dong",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "釜山郵局前下車，步行 2分鐘回飯店。",
+        "type": "公車(22:30前)",
+        "route_description": "在 <b>보수동책방골목 寶水洞舊書街</b> 搭乘 40, 81 號公車，於 <b>영주동 瀛州洞</b> 下車。",
+        "board_zh": "寶水洞舊書街",
+        "board_kr": "보수동책방골목",
+        "board_en": "Bosu Book Street",
+        "board_img": "images/富平市場回程-40.jpg",
+        "board_desc": "站牌在 NH 類似銀行的建築物旁。",
+        "alight_zh": "瀛州洞",
+        "alight_kr": "영주동",
+        "alight_en": "Yeongju dong",
+        "alight_img": "images/富平市場回程下車-2.jpg",
+        "alight_desc": "영주동 瀛州洞 下車，步行回飯店。",
+        "cost_krw": 1550,
+        "duration_mins": 10
+      },
+      {
+        "type": "公車(23:00)",
+        "route_description": "在 <b>부평시장 富平市場</b> 搭乘 103, 2(심야) 號公車，於 <b>영주동 瀛州洞</b> 下車。<br>  2(심야) 號：22:50-00:10 每 30 分鐘一班。",
+        "board_zh": "富平市場",
+        "board_kr": "부평시장",
+        "board_en": "Bupyeong Market",
+        "board_img": "images/富平市場回程-2.jpg",
+        "board_desc": "GS25旁公車站上車。",
+        "alight_zh": "瀛州洞",
+        "alight_kr": "영주동",
+        "alight_en": "Yeongju dong",
+        "alight_img": "images/富平市場回程下車-2.jpg",
+        "alight_desc": "영주동 瀛州洞 下車，步行回飯店。",
         "cost_krw": 1550,
         "duration_mins": 15
       },
       {
         "type": "計程車 / Uber",
         "route_description": "叫車返回飯店（約 15 分鐘）",
-        "board_zh": "南浦洞 / BIFF 廣場",
-        "board_kr": "남포동",
-        "board_en": "Nampo-dong",
-        "board_img": "images/example.jpg",
-        "board_desc": "BIFF 廣場門口牌樓旁。",
+        "board_zh": "富平罐頭市場",
+        "board_kr": "부평깡통시장",
+        "board_en": "Bupyeong Market",
         "alight_zh": "東橫INN 釜山中央站",
         "alight_kr": "토요코인 부산중앙역",
         "alight_en": "Toyoko Inn Busan Jungang Station",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "飯店門口。",
-        "cost_krw": 4800,
+        "cost_krw": 6500,
         "duration_mins": 15
       },
       {
         "type": "步行",
         "route_description": "沿光復路與中央路散步返回飯店",
-        "board_zh": "南浦洞",
-        "board_kr": "남포동",
-        "board_en": "Nampo-dong",
-        "board_img": "images/example.jpg",
-        "board_desc": "光復路時裝街底。",
+        "board_zh": "富平罐頭市場",
+        "board_kr": "부평깡통시장",
+        "board_en": "Bupyeong Market",
         "alight_zh": "東橫INN 釜山中央站",
         "alight_kr": "토요코인 부산중앙역",
         "alight_en": "Toyoko Inn Busan Jungang Station",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "飯店門口。",
         "cost_krw": 0,
         "duration_mins": 30
       }
@@ -952,25 +983,21 @@
   {
     "day": 4,
     "date": "2026-09-15",
-    "time": "06:30 - 07:30",
+    "time": "06:30 - 07:20",
     "travelers": ["Kuan", "Lily"],
     "spot_zh": "飯店早餐 (Optional)",
     "spot_kr": "토요코인 부산중앙역 조식",
     "naver_link": "https://naver.me/FfMP43X9",
-    "notes": "可彈性決定是否於飯店 1樓享用早餐並辦理退房辦理手續。",
-    "photos": ["images/example.jpg"],
+    "notes": "早餐時間 6:30 開始、位於 2 樓，早餐時間電梯下樓人數較多，建議早餐即攜帶行李下樓，並辦理退房手續。",
     "transit_options": []
   },
   {
     "day": 4,
     "date": "2026-09-15",
-    "time": "07:30 - 08:30",
+    "time": "07:30",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "飯店 1F 集合搭乘接駁車前往機場",
+    "spot_zh": "飯店 1F 集合，搭乘接駁車前往金海國際機場。",
     "spot_kr": "토요코인 부산중앙역 1F",
-    "naver_link": "https://naver.me/FfMP43X9",
-    "notes": "準時於 07:30 在飯店大廳集合搭乘接駁車前往金海國際機場。",
-    "photos": ["images/example.jpg"],
     "transit_options": [
       {
         "type": "接駁專車",
@@ -978,22 +1005,13 @@
         "board_zh": "東橫INN 釜山中央站",
         "board_kr": "토요코인 부산중앙역",
         "board_en": "Toyoko Inn Busan Jungang Station",
-        "board_img": "images/example.jpg",
-        "board_desc": "飯店 1樓大廳門口接駁車停靠點。",
         "alight_zh": "金海國際機場",
         "alight_kr": "김해국제공항",
         "alight_en": "Gimhae International Airport",
-        "alight_img": "images/example.jpg",
-        "alight_desc": "金海國際機場 2樓出境大廳門口。",
         "cost_krw": 0,
         "duration_mins": 45
       }
-    ],
-    "taxi_card": {
-      "title": "前往金海國際機場",
-      "address_kr": "부산 강서구 공항진입로 108 (김해국제공항)",
-      "message": "안녕하세요! 기사님, 김해국제공항으로 가주세요. 감사합니다."
-    }
+    ]
   },
   {
     "day": 4,
@@ -1002,7 +1020,7 @@
     "travelers": ["Lily"],
     "spot_zh": "Lily 機場報到 & 搭機回台 (中華航空 CI191)",
     "spot_kr": "김해국제공항 (대한항공/중화항공 CI191)",
-    "naver_link": "https://naver.me/G14B39Kq",
+    "naver_link": "https://naver.me/GNRjwFwb",
     "notes": "Lily 航班 CI191 預計 10:30 起飛，11:55 抵達台北桃園(TPE)。辦理登機與退稅手續。",
     "photos": ["images/example.jpg"],
     "transit_options": []
@@ -1014,8 +1032,8 @@
     "travelers": ["Kuan"],
     "spot_zh": "Kuan 機場報到 & 搭機回台 (釜山航空 BX793)",
     "spot_kr": "김해국제공항 (에어부산 BX793)",
-    "naver_link": "https://naver.me/G14B39Kq",
-    "notes": "Kuan 航班 BX793 預計 10:50 起飛，12:35 抵達台北桃園(TPE)。【提醒：釜山航空誤點率較高，請留意登機口動態】。",
+    "naver_link": "https://naver.me/GNRjwFwb",
+    "notes": "Kuan 航班 BX793 預計 10:50 起飛，12:35 抵達台北桃園(TPE)。<br>【提醒】釜山航空誤點率較高，請留意登機口動態】。",
     "photos": ["images/example.jpg"],
     "transit_options": []
   }

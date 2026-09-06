@@ -22,6 +22,7 @@
               blue: '#38647A',
               sky: '#5389A3',
               red: '#ED4C4C',
+              dark: '#1E3A4A'
             }
           },
           fontFamily: {
@@ -119,6 +120,61 @@
       50% { transform: translateY(-5px); }
     }
     .animate-pixel-bounce { animation: pixel-bounce 1.5s infinite ease-in-out; }
+
+    @keyframes pulse-red {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.65; }
+    }
+    .animate-pulse-red { animation: pulse-red 1s infinite ease-in-out; }
+
+    /* ================= 像素翻頁時鐘 (Pixel Flip Clock) 視覺樣式 ================= */
+    .pixel-flip-unit {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .pixel-flip-card {
+      position: relative;
+      background: #1E3A4A;
+      color: #FAF3D3;
+      border: 2px solid #38647A;
+      box-shadow: 0 3px 0 #1E3A4A;
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-family: 'DotGothic16', monospace;
+      font-size: 1.1rem;
+      font-weight: bold;
+      min-width: 34px;
+      text-center: center;
+      line-height: 1.2;
+      overflow: hidden;
+    }
+    /* 翻頁卡片中間的分隔線條 (模擬翻頁折痕) */
+    .pixel-flip-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .pixel-flip-label {
+      font-size: 9px;
+      font-family: 'DotGothic16', monospace;
+      color: #38647A;
+      margin-top: 2px;
+    }
+    .pixel-flip-divider {
+      font-family: 'DotGothic16', monospace;
+      font-weight: bold;
+      color: #ED4C4C;
+      font-size: 1rem;
+      line-height: 1.2;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
   </style>
 </head>
 <body class="pb-20 font-sans">
@@ -255,9 +311,9 @@
           
           <div class="space-y-2 font-pixel text-xs">
             <input type="text" id="expense-title" placeholder="項目 (例如：海雲台炒年糕)" class="w-full p-2 bg-pixel-cream/40 rounded border-2 border-pixel-blue">
-            <div class="flex gap-2">
-              <input type="number" id="expense-amount" placeholder="金額 (KRW ₩)" class="flex-1 p-2 bg-pixel-cream/40 rounded border-2 border-pixel-blue">
-              <select id="expense-payer" class="p-2 bg-pixel-cream/40 rounded border-2 border-pixel-blue">
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input type="number" id="expense-amount" placeholder="金額 (KRW ₩)" class="flex-1 min-w-0 p-2 bg-pixel-cream/40 rounded border-2 border-pixel-blue">
+              <select id="expense-payer" class="p-2 bg-pixel-cream/40 rounded border-2 border-pixel-blue shrink-0">
                 <option value="Kuan">Kuan 付</option>
                 <option value="Lily">Lily 付</option>
                 <option value="公金">公金付</option>
@@ -307,7 +363,6 @@
     </div>
   </div>
 
-  <!-- 站點相片彈窗（支援多圖展示與切換） -->
   <div id="station-modal" class="fixed inset-0 bg-pixel-blue/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
     <div class="pixel-card max-w-lg w-full p-5 relative border-4 border-pixel-blue bg-[#FFFFFF] shadow-2xl space-y-3">
       <button onclick="closeStationModal()" class="absolute top-3 right-3 text-pixel-blue hover:text-pixel-red text-2xl font-pixel"><i class="fa-solid fa-square-xmark"></i></button>
@@ -316,7 +371,6 @@
       </div>
       <h3 id="station-title" class="text-lg font-bold text-pixel-blue font-pixel">站點名稱</h3>
       
-      <!-- 多圖展示容器 -->
       <div id="station-img-container" class="space-y-2">
         <div class="border-2 border-pixel-blue rounded-lg overflow-hidden bg-pixel-cream/30">
           <img id="station-img" src="" alt="站點示意圖" class="w-full h-56 object-contain bg-black/5 cursor-pointer" onclick="openImageModal(this.src)">
@@ -342,11 +396,100 @@
     let currentDay = 1;
     let selectedTraveler = 'all';
     let currentRate = 42.5;
+    let countdownInterval = null;
 
     async function initApp() {
       fetchItinerary();
       fetchPresetExpenses();
       fetchLiveExchangeRate();
+    }
+
+    // 渲染像素翻頁時鐘 HTML 結構
+    function renderPixelFlipClockHTML(days, hours, minutes, seconds) {
+      const pad = (n) => String(n).padStart(2, '0');
+      
+      return `
+        <div class="flex items-center gap-1 mt-2">
+          <div class="pixel-flip-unit">
+            <div class="pixel-flip-card">${days}</div>
+            <span class="pixel-flip-label">天</span>
+          </div>
+          <span class="pixel-flip-divider">:</span>
+          <div class="pixel-flip-unit">
+            <div class="pixel-flip-card">${pad(hours)}</div>
+            <span class="pixel-flip-label">時</span>
+          </div>
+          <span class="pixel-flip-divider">:</span>
+          <div class="pixel-flip-unit">
+            <div class="pixel-flip-card">${pad(minutes)}</div>
+            <span class="pixel-flip-label">分</span>
+          </div>
+          <span class="pixel-flip-divider">:</span>
+          <div class="pixel-flip-unit">
+            <div class="pixel-flip-card">${pad(seconds)}</div>
+            <span class="pixel-flip-label">秒</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // 動態更新當前畫面中所有像素翻頁時鐘
+    function updateFlightCountdowns() {
+      const now = new Date().getTime();
+
+      document.querySelectorAll('[data-countdown-iso]').forEach(el => {
+        const targetIso = el.getAttribute('data-countdown-iso');
+        const targetTime = new Date(targetIso).getTime();
+        const diff = targetTime - now;
+
+        if (diff <= 0) {
+          el.innerHTML = `<span class="text-xs font-pixel text-emerald-600 font-bold block mt-1">✈️ 航班已起飛 / 抵達！</span>`;
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        el.innerHTML = renderPixelFlipClockHTML(days, hours, minutes, seconds);
+      });
+    }
+
+    // 取得目前韓國當地時間 (Asia/Seoul)
+    function getKoreaCurrentTimeInfo() {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false };
+      const formatter = new Intl.DateTimeFormat('sv-SE', options);
+      const parts = formatter.format(now).split(' ');
+      
+      const dateStr = parts[0]; 
+      const timeStr = parts[1];
+      const [h, m] = timeStr.split(':').map(Number);
+      const currentMinutesTotal = h * 60 + m;
+
+      return { dateStr, currentMinutesTotal };
+    }
+
+    // 判斷行程是否進行中
+    function isSpotCurrentActive(spotDateStr, spotTimeRangeStr) {
+      const krInfo = getKoreaCurrentTimeInfo();
+      if (spotDateStr !== krInfo.dateStr) return false;
+
+      if (!spotTimeRangeStr || !spotTimeRangeStr.includes('-')) return false;
+
+      const times = spotTimeRangeStr.split('-').map(s => s.trim());
+      if (times.length < 2) return false;
+
+      const parseMinutes = (tStr) => {
+        const [h, m] = tStr.split(':').map(Number);
+        return h * 60 + m;
+      };
+
+      const startMins = parseMinutes(times[0]);
+      const endMins = parseMinutes(times[1]);
+
+      return krInfo.currentMinutesTotal >= startMins && krInfo.currentMinutesTotal <= endMins;
     }
 
     async function fetchPresetExpenses() {
@@ -425,6 +568,8 @@
     }
 
     function renderDay(day) {
+      if (countdownInterval) clearInterval(countdownInterval);
+
       const container = document.getElementById('itinerary-container');
       let dayData = itineraryData.filter(item => item.day === day);
       
@@ -438,10 +583,37 @@
       }
 
       container.innerHTML = dayData.map(spot => {
+        const isActive = isSpotCurrentActive(spot.date, spot.time);
+        
+        const timeBgClass = isActive 
+          ? 'bg-pixel-red text-white border-pixel-red animate-pulse-red' 
+          : 'bg-pixel-blue text-white border-pixel-blue';
+
         const travelersHtml = spot.travelers ? spot.travelers.map(t => {
           const bgClass = t === 'Kuan' ? 'bg-blue-100 text-blue-900 border-blue-900' : 'bg-pink-100 text-pink-900 border-pink-900';
           return `<span class="inline-block border-2 px-2 py-0.5 rounded text-xs font-pixel mr-1 ${bgClass}"><i class="fa-solid fa-user text-[10px] mr-1"></i>${t}</span>`;
         }).join('') : '';
+
+        // 像素風翻頁倒數卡片區塊
+        const flightCountdownsHtml = spot.flight_countdowns && spot.flight_countdowns.length > 0 ? `
+          <div class="mt-4 p-3.5 bg-pixel-cream/60 border-2 border-pixel-blue rounded-xl space-y-2">
+            <p class="text-xs font-pixel text-pixel-blue font-bold uppercase flex items-center gap-1.5">
+              <i class="fa-solid fa-clock text-pixel-red"></i>
+              <span>航班起飛 / 抵達像素倒數：</span>
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              ${spot.flight_countdowns.map(cd => `
+                <div class="bg-white p-3 rounded-lg border-2 border-pixel-blue shadow-sm">
+                  <div class="flex justify-between items-center text-xs font-pixel font-bold text-pixel-blue">
+                    <span>${cd.label}</span>
+                    <span class="text-[10px] bg-pixel-blue/10 text-pixel-blue px-1.5 py-0.5 rounded border border-pixel-blue">${cd.tz_label}</span>
+                  </div>
+                  <div id="${cd.id}" data-countdown-iso="${cd.time_iso}"></div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : '';
 
         // 機場設施
         const airportFacilitiesHtml = spot.airport_facilities && spot.airport_facilities.length > 0 ? `
@@ -507,7 +679,7 @@
           </div>
         ` : '';
 
-        // 交通轉乘 (強化：支援單圖或多圖陣列格式)
+        // 交通轉乘
         const transitHtml = spot.transit_options && spot.transit_options.length > 0 ? `
           <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30 space-y-2">
             <p class="text-xs font-pixel text-pixel-blue/70 uppercase"><i class="fa-solid fa-route mr-1"></i>交通與轉乘方式：</p>
@@ -518,7 +690,6 @@
 
               const renderStationText = (nameZh, nameKr, imgVal, desc, labelType) => {
                 if (!nameZh) return '';
-                // 自動處理包含多圖 (Array) 或單圖 (String)
                 if (imgVal) {
                   const imgArray = Array.isArray(imgVal) ? imgVal : [imgVal];
                   const imgJsonStr = JSON.stringify(imgArray).replace(/"/g, '&quot;');
@@ -568,10 +739,10 @@
         }
 
         return `
-          <div class="pixel-card p-5 md:p-6 relative">
+          <div class="pixel-card p-5 md:p-6 relative ${isActive ? 'border-pixel-red shadow-[0_8px_0_#ED4C4C]' : ''}">
             <div class="flex justify-between items-start mb-2">
-              <span class="text-xs font-pixel text-white bg-pixel-blue px-2.5 py-1 rounded border border-pixel-blue">
-                <i class="fa-regular fa-clock mr-1"></i>${spot.time}
+              <span class="text-xs font-pixel px-2.5 py-1 rounded border ${timeBgClass}">
+                <i class="fa-regular fa-clock mr-1"></i>${spot.time} ${isActive ? ' (進行中)' : ''}
               </span>
               <div>${travelersHtml}</div>
             </div>
@@ -585,6 +756,7 @@
             </h2>
             <p class="text-xs font-pixel text-pixel-blue/60 mb-3">${spot.spot_kr || ''}</p>
             ${spot.notes ? `<div class="bg-pixel-cream/50 p-3 rounded-lg border-2 border-pixel-blue text-xs text-pixel-blue leading-relaxed font-sans"><i class="fa-solid fa-circle-info text-pixel-red mr-1"></i><strong>注意事項：</strong> ${spot.notes}</div>` : ''}
+            ${flightCountdownsHtml}
             ${airportFacilitiesHtml}
             ${cafesHtml}
             ${photosHtml}
@@ -593,6 +765,10 @@
           </div>
         `;
       }).join('');
+
+      // 每秒更新翻頁卡片數值
+      updateFlightCountdowns();
+      countdownInterval = setInterval(updateFlightCountdowns, 1000);
     }
 
     function toggleDrawer() {
@@ -736,7 +912,6 @@
       document.getElementById('taxi-modal').classList.add('hidden');
     }
 
-    // 站點彈窗（支援多圖縮圖切換與預覽）
     function openStationModal(title, imgVal, desc, typeLabel) {
       document.getElementById('station-title').innerText = title;
       document.getElementById('station-desc').innerHTML = desc || '尚無備註說明';
@@ -748,8 +923,6 @@
 
       if (imgList.length > 0) {
         mainImg.src = imgList[0];
-        
-        // 渲染多圖縮圖
         if (imgList.length > 1) {
           thumbContainer.innerHTML = imgList.map((src, index) => `
             <img src="${src}" onclick="document.getElementById('station-img').src='${src}'" 

@@ -302,18 +302,17 @@
         </div>
       </div>
 
-      <!-- 記帳小幫手（GitHub API 自動同步） -->
       <div id="menu-content-accounting" class="space-y-4 hidden">
         <div class="bg-pixel-cream/70 p-3 rounded-xl border-2 border-pixel-blue space-y-2 font-pixel text-xs">
           <div class="flex justify-between items-center">
-            <span class="font-bold text-pixel-blue"><i class="fa-solid fa-key text-pixel-red mr-1"></i>GitHub 金鑰同步：</span>
+            <span class="font-bold text-pixel-blue"><i class="fa-solid fa-key text-pixel-red mr-1"></i>GitHub 金鑰登入：</span>
             <span id="gh-status-badge" class="text-[10px] bg-amber-200 text-amber-800 px-1.5 py-0.5 rounded border border-amber-800">僅讀取模式</span>
           </div>
           <div class="flex gap-2">
             <input type="password" id="github-token-input" placeholder="貼上 PAT Token (ghp_...)" class="flex-1 p-1.5 bg-white rounded border border-pixel-blue text-xs font-sans">
             <button onclick="saveGitHubToken()" class="px-2.5 py-1 bg-pixel-blue text-white rounded font-pixel hover:bg-pixel-dark">儲存</button>
           </div>
-          <p class="text-[10px] text-pixel-blue/60 leading-tight">提示：手動貼上 Token ，每次異動都會自動 commit 回 GitHub 保存歷史紀錄。</p>
+          <p class="text-[10px] text-pixel-blue/60 leading-tight">提示：手動貼上 Token 後，每次異動將自動 commit 回 GitHub 保存歷史紀錄。</p>
         </div>
 
         <div class="pixel-card p-4 bg-white space-y-3">
@@ -334,7 +333,7 @@
               </select>
             </div>
             <button id="save-expense-btn" onclick="saveExpenseToGitHub()" class="w-full py-2 bg-pixel-red text-white rounded-lg border-2 border-pixel-blue font-pixel shadow-sm hover:bg-red-600 flex items-center justify-center gap-1">
-              <span id="save-btn-text">新增記帳</span>
+              <span id="save-btn-text">新增記帳 (同步 GitHub)</span>
             </button>
           </div>
         </div>
@@ -403,7 +402,6 @@
   </div>
 
   <script>
-    // Github Repo API設定：存入data/expenses.json 
     const GH_OWNER = 'kuuuuuan';
     const GH_REPO = 'busantrip';
     const GH_FILE_PATH = 'data/expenses.json';
@@ -416,6 +414,23 @@
     let selectedTraveler = 'all';
     let currentRate = 42.5;
     let countdownInterval = null;
+
+    // 測試時間變數 (Console 測試用)
+    window.mockDateTimeStr = null;
+
+    // Console 測試：設定模擬時間（例：setMockTime("2026-09-12 03:00")）
+    window.setMockTime = function(dateTimeStr) {
+      window.mockDateTimeStr = dateTimeStr;
+      console.log(`[測試模式] 已設定模擬時間為：${dateTimeStr}`);
+      renderDay(currentDay);
+    };
+
+    // Console 測試：重置時間
+    window.resetMockTime = function() {
+      window.mockDateTimeStr = null;
+      console.log(`[測試模式] 已重置為真實當前時間`);
+      renderDay(currentDay);
+    };
 
     async function initApp() {
       loadSavedToken();
@@ -492,7 +507,7 @@
     async function commitExpensesToGitHub(updatedExpenses, commitMessage) {
       const pat = localStorage.getItem('busan_gh_pat');
       if (!pat) {
-        alert('請先在上方輸入 GitHub Personal Access Token (PAT) 才能進行同步！');
+        alert('請先在上方輸入 GitHub Personal Access Token (PAT) 才能進行同步。');
         return false;
       }
 
@@ -524,7 +539,7 @@
           currentFileSha = result.content.sha;
           expensesData = updatedExpenses;
           renderExpenses();
-          alert('成功同步至 GitHub！ Commit 已自動生成。');
+          alert('已成功同步至 GitHub。');
           return true;
         } else {
           const errData = await res.json();
@@ -535,7 +550,7 @@
         alert('網路請求失敗');
         return false;
       } finally {
-        saveBtnText.innerText = '新增記帳 (同步 GitHub)';
+        saveBtnText.innerText = '新增記帳';
       }
     }
 
@@ -546,7 +561,7 @@
       const payer = document.getElementById('expense-payer').value;
 
       if (!title || isNaN(amount) || amount <= 0) {
-        alert('請填寫有效的項目與金額！');
+        alert('請填寫有效的項目與金額。');
         return;
       }
 
@@ -630,7 +645,7 @@
       document.getElementById('expense-payer').value = itemToEdit.payer;
 
       document.getElementById('form-title').innerHTML = `<i class="fa-solid fa-pen-to-square mr-1"></i> 編輯花費項目`;
-      document.getElementById('save-btn-text').innerText = '儲存變更 (同步 GitHub)';
+      document.getElementById('save-btn-text').innerText = '儲存變更';
       document.getElementById('cancel-edit-btn').classList.remove('hidden');
     }
 
@@ -641,7 +656,7 @@
       document.getElementById('expense-payer').value = 'Kuan';
 
       document.getElementById('form-title').innerHTML = `<i class="fa-solid fa-pen-to-square mr-1"></i> 新增花費記錄`;
-      document.getElementById('save-btn-text').innerText = '新增記帳 (同步 GitHub)';
+      document.getElementById('save-btn-text').innerText = '新增記帳';
       document.getElementById('cancel-edit-btn').classList.add('hidden');
     }
 
@@ -674,7 +689,7 @@
     }
 
     function updateFlightCountdowns() {
-      const now = new Date().getTime();
+      const now = window.mockDateTimeStr ? new Date(window.mockDateTimeStr).getTime() : new Date().getTime();
 
       document.querySelectorAll('[data-countdown-iso]').forEach(el => {
         const targetIso = el.getAttribute('data-countdown-iso');
@@ -682,7 +697,7 @@
         const diff = targetTime - now;
 
         if (diff <= 0) {
-          el.innerHTML = `<span class="text-xs font-pixel text-emerald-600 font-bold block mt-1">✈️ 航班已起飛 / 抵達！</span>`;
+          el.innerHTML = `<span class="text-xs font-pixel text-emerald-600 font-bold block mt-1">航班已起飛。</span>`;
           return;
         }
 
@@ -695,8 +710,10 @@
       });
     }
 
+    // 計算韓國時間 (測試用： Console 模擬時間)
     function getKoreaCurrentTimeInfo() {
-      const now = new Date();
+      const now = window.mockDateTimeStr ? new Date(window.mockDateTimeStr) : new Date();
+      
       const options = { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false };
       const formatter = new Intl.DateTimeFormat('sv-SE', options);
       const parts = formatter.format(now).split(' ');
@@ -709,6 +726,7 @@
       return { dateStr, currentMinutesTotal };
     }
 
+    // 判斷行程是否進行中（若現在時間介於 start ~ end，回傳 true）
     function isSpotCurrentActive(spotDateStr, spotTimeRangeStr) {
       const krInfo = getKoreaCurrentTimeInfo();
       if (spotDateStr !== krInfo.dateStr) return false;
@@ -810,6 +828,7 @@
       container.innerHTML = dayData.map(spot => {
         const isActive = isSpotCurrentActive(spot.date, spot.time);
         
+        // 當前行程高亮（紅色動態背景）
         const timeBgClass = isActive 
           ? 'bg-pixel-red text-white border-pixel-red animate-pulse-red' 
           : 'bg-pixel-blue text-white border-pixel-blue';
@@ -878,7 +897,7 @@
                 <div class="bg-pixel-cream/40 p-3 rounded-xl border-2 border-pixel-blue space-y-1">
                   <div class="flex justify-between items-start">
                     <span class="font-bold text-xs text-pixel-blue font-sans">${cafe.name_zh}</span>
-                    ${cafe.naver_link ? `<a href="${cafe.naver_link}" target="_blank" class="text-[10px] font-pixel text-emerald-800 bg-emerald-200 px-1.5 py-0.5 rounded border border-emerald-800"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>` : ''}
+                    ${cafe.naver_link ? `<a href="${cafe.naver_link}" target="_blank" class="text-[10px] font-pixel text-emerald-800 bg-emerald-200 px-1.5 py-0.5 rounded border border-emerald-800 shrink-0 whitespace-nowrap"><i class="fa-solid fa-map-location-dot"></i> Naver</a>` : ''}
                   </div>
                   <p class="text-[11px] text-pixel-blue/60 font-pixel">${cafe.name_kr}</p>
                   <p class="text-[11px] text-slate-700 select-all font-sans"><i class="fa-solid fa-location-dot text-pixel-red mr-1"></i>${cafe.address_kr}</p>
@@ -965,11 +984,12 @@
               </span>
               <div>${travelersHtml}</div>
             </div>
-            <h2 class="text-xl md:text-2xl text-pixel-blue my-2 flex items-center justify-between font-sans">
-              <span>${spot.spot_zh}</span>
+            <!-- 行程標題微調大小：text-lg md:text-xl -->
+            <h2 class="text-lg md:text-xl font-bold text-pixel-blue my-2 flex items-center justify-between font-sans leading-snug">
+              <span class="mr-2">${spot.spot_zh}</span>
               ${spot.naver_link ? `
-                <a href="${spot.naver_link}" target="_blank" class="text-xs font-pixel text-emerald-800 bg-emerald-200 px-2.5 py-1 rounded border-2 border-emerald-800 ml-2">
-                  <i class="fa-solid fa-map-location-dot mr-1"></i>Naver Map
+                <a href="${spot.naver_link}" target="_blank" class="text-xs font-pixel text-emerald-800 bg-emerald-200 px-2.5 py-1 rounded border-2 border-emerald-800 shrink-0 whitespace-nowrap">
+                  <i class="fa-solid fa-map-location-dot mr-1"></i>Naver
                 </a>
               ` : ''}
             </h2>

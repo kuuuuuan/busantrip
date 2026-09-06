@@ -313,7 +313,7 @@
             <input type="password" id="github-token-input" placeholder="貼上 PAT Token (ghp_...)" class="flex-1 p-1.5 bg-white rounded border border-pixel-blue text-xs font-sans">
             <button onclick="saveGitHubToken()" class="px-2.5 py-1 bg-pixel-blue text-white rounded font-pixel hover:bg-pixel-dark">儲存</button>
           </div>
-          <p class="text-[10px] text-pixel-blue/60 leading-tight">提示：貼上 Token 後，每次新增或編輯都會自動 commit 回 GitHub 保存歷史紀錄。</p>
+          <p class="text-[10px] text-pixel-blue/60 leading-tight">提示：手動貼上 Token ，每次異動都會自動 commit 回 GitHub 保存歷史紀錄。</p>
         </div>
 
         <div class="pixel-card p-4 bg-white space-y-3">
@@ -334,7 +334,7 @@
               </select>
             </div>
             <button id="save-expense-btn" onclick="saveExpenseToGitHub()" class="w-full py-2 bg-pixel-red text-white rounded-lg border-2 border-pixel-blue font-pixel shadow-sm hover:bg-red-600 flex items-center justify-center gap-1">
-              <span id="save-btn-text">新增記帳 (同步 GitHub)</span>
+              <span id="save-btn-text">新增記帳</span>
             </button>
           </div>
         </div>
@@ -449,7 +449,7 @@
     function updateGitHubStatusBadge(hasToken) {
       const badge = document.getElementById('gh-status-badge');
       if (hasToken) {
-        badge.innerText = '已連線 (可同步)';
+        badge.innerText = '已同步';
         badge.className = 'text-[10px] bg-emerald-200 text-emerald-800 px-1.5 py-0.5 rounded border border-emerald-800';
       } else {
         badge.innerText = '僅讀取模式';

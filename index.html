@@ -6,7 +6,6 @@
   <title>釜山 4天自由行</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -127,7 +126,6 @@
     }
     .animate-pulse-red { animation: pulse-red 1s infinite ease-in-out; }
 
-    /* ================= 像素翻頁時鐘 (Pixel Flip Clock) 視覺樣式 ================= */
     .pixel-flip-unit {
       display: inline-flex;
       flex-direction: column;
@@ -145,11 +143,10 @@
       font-size: 1.1rem;
       font-weight: bold;
       min-width: 34px;
-      text-center: center;
+      text-align: center;
       line-height: 1.2;
       overflow: hidden;
     }
-    /* 翻頁卡片中間的分隔線條 (模擬翻頁折痕) */
     .pixel-flip-card::after {
       content: '';
       position: absolute;
@@ -305,11 +302,28 @@
         </div>
       </div>
 
+      <!-- 記帳小幫手（GitHub API 自動同步） -->
       <div id="menu-content-accounting" class="space-y-4 hidden">
+        <div class="bg-pixel-cream/70 p-3 rounded-xl border-2 border-pixel-blue space-y-2 font-pixel text-xs">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-pixel-blue"><i class="fa-solid fa-key text-pixel-red mr-1"></i>GitHub 金鑰同步：</span>
+            <span id="gh-status-badge" class="text-[10px] bg-amber-200 text-amber-800 px-1.5 py-0.5 rounded border border-amber-800">僅讀取模式</span>
+          </div>
+          <div class="flex gap-2">
+            <input type="password" id="github-token-input" placeholder="貼上 PAT Token (ghp_...)" class="flex-1 p-1.5 bg-white rounded border border-pixel-blue text-xs font-sans">
+            <button onclick="saveGitHubToken()" class="px-2.5 py-1 bg-pixel-blue text-white rounded font-pixel hover:bg-pixel-dark">儲存</button>
+          </div>
+          <p class="text-[10px] text-pixel-blue/60 leading-tight">提示：貼上 Token 後，每次新增或編輯都會自動 commit 回 GitHub 保存歷史紀錄。</p>
+        </div>
+
         <div class="pixel-card p-4 bg-white space-y-3">
-          <h3 class="font-pixel text-sm text-pixel-blue font-bold border-b-2 border-pixel-cream pb-1"><i class="fa-solid fa-pen-to-square mr-1"></i> 新增花費記錄</h3>
+          <div class="flex justify-between items-center border-b-2 border-pixel-cream pb-1">
+            <h3 id="form-title" class="font-pixel text-sm text-pixel-blue font-bold"><i class="fa-solid fa-pen-to-square mr-1"></i> 新增花費記錄</h3>
+            <button id="cancel-edit-btn" onclick="cancelEditMode()" class="hidden text-[10px] font-pixel text-pixel-red underline">取消編輯</button>
+          </div>
           
           <div class="space-y-2 font-pixel text-xs">
+            <input type="hidden" id="editing-expense-id" value="">
             <input type="text" id="expense-title" placeholder="項目 (例如：海雲台炒年糕)" class="w-full p-2 bg-pixel-cream/40 rounded border-2 border-pixel-blue">
             <div class="flex flex-col sm:flex-row gap-2">
               <input type="number" id="expense-amount" placeholder="金額 (KRW ₩)" class="flex-1 min-w-0 p-2 bg-pixel-cream/40 rounded border-2 border-pixel-blue">
@@ -319,7 +333,9 @@
                 <option value="公金">公金付</option>
               </select>
             </div>
-            <button onclick="addExpense()" class="w-full py-2 bg-pixel-red text-white rounded-lg border-2 border-pixel-blue font-pixel shadow-sm hover:bg-red-600">新增記帳</button>
+            <button id="save-expense-btn" onclick="saveExpenseToGitHub()" class="w-full py-2 bg-pixel-red text-white rounded-lg border-2 border-pixel-blue font-pixel shadow-sm hover:bg-red-600 flex items-center justify-center gap-1">
+              <span id="save-btn-text">新增記帳 (同步 GitHub)</span>
+            </button>
           </div>
         </div>
 
@@ -329,15 +345,12 @@
             <span id="total-expense-krw" class="text-pixel-red font-bold text-sm">₩0</span>
           </div>
 
-          <div id="expense-list" class="space-y-2 max-h-56 overflow-y-auto text-xs font-sans">
+          <div id="expense-list" class="space-y-2 max-h-64 overflow-y-auto text-xs font-sans">
           </div>
 
-          <div class="pt-2 border-t border-dashed border-pixel-blue/20 flex gap-2">
-            <button onclick="exportExpensesToCSV()" class="flex-1 py-1.5 bg-emerald-700 text-white rounded font-pixel text-[11px] hover:bg-emerald-800 border border-emerald-900">
+          <div class="pt-2 border-t border-dashed border-pixel-blue/20">
+            <button onclick="exportExpensesToCSV()" class="w-full py-1.5 bg-emerald-700 text-white rounded font-pixel text-[11px] hover:bg-emerald-800 border border-emerald-900">
               <i class="fa-solid fa-file-excel mr-1"></i>匯出 CSV 明細
-            </button>
-            <button onclick="clearCustomExpenses()" class="py-1.5 px-3 bg-gray-200 text-slate-700 rounded font-pixel text-[11px] hover:bg-red-100 hover:text-pixel-red border border-gray-400">
-              重置手動花費
             </button>
           </div>
         </div>
@@ -390,21 +403,248 @@
   </div>
 
   <script>
+    // ⚠️ 請確認 GH_OWNER 與 GH_REPO 填寫正確
+    const GH_OWNER = 'kuan-ya-chen';
+    const GH_REPO = 'Busan2026';
+    const GH_FILE_PATH = 'data/expenses.json';
+    const GH_BRANCH = 'main';
+
     let itineraryData = [];
-    let presetExpenses = [];
-    let userExpenses = JSON.parse(localStorage.getItem('busan_user_expenses')) || [];
+    let expensesData = [];
+    let currentFileSha = '';
     let currentDay = 1;
     let selectedTraveler = 'all';
     let currentRate = 42.5;
     let countdownInterval = null;
 
     async function initApp() {
+      loadSavedToken();
       fetchItinerary();
-      fetchPresetExpenses();
+      fetchExpensesFromGitHub();
       fetchLiveExchangeRate();
     }
 
-    // 渲染像素翻頁時鐘 HTML 結構
+    function loadSavedToken() {
+      const savedToken = localStorage.getItem('busan_gh_pat');
+      if (savedToken) {
+        document.getElementById('github-token-input').value = savedToken;
+        updateGitHubStatusBadge(true);
+      }
+    }
+
+    function saveGitHubToken() {
+      const token = document.getElementById('github-token-input').value.trim();
+      if (!token) {
+        localStorage.removeItem('busan_gh_pat');
+        updateGitHubStatusBadge(false);
+        alert('已清除 Token');
+      } else {
+        localStorage.setItem('busan_gh_pat', token);
+        updateGitHubStatusBadge(true);
+        alert('GitHub Token 已儲存！');
+        fetchExpensesFromGitHub();
+      }
+    }
+
+    function updateGitHubStatusBadge(hasToken) {
+      const badge = document.getElementById('gh-status-badge');
+      if (hasToken) {
+        badge.innerText = '已連線 (可同步)';
+        badge.className = 'text-[10px] bg-emerald-200 text-emerald-800 px-1.5 py-0.5 rounded border border-emerald-800';
+      } else {
+        badge.innerText = '僅讀取模式';
+        badge.className = 'text-[10px] bg-amber-200 text-amber-800 px-1.5 py-0.5 rounded border border-amber-800';
+      }
+    }
+
+    async function fetchExpensesFromGitHub() {
+      const pat = localStorage.getItem('busan_gh_pat');
+      const headers = pat ? { 'Authorization': `token ${pat}` } : {};
+
+      try {
+        const res = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE_PATH}?ref=${GH_BRANCH}`, { headers });
+        if (res.ok) {
+          const fileData = await res.json();
+          currentFileSha = fileData.sha;
+          const jsonText = decodeURIComponent(escape(atob(fileData.content)));
+          expensesData = JSON.parse(jsonText);
+          renderExpenses();
+        } else {
+          fetchFallbackExpenses();
+        }
+      } catch (e) {
+        fetchFallbackExpenses();
+      }
+    }
+
+    async function fetchFallbackExpenses() {
+      try {
+        const res = await fetch('data/expenses.json');
+        if (res.ok) {
+          expensesData = await res.json();
+          renderExpenses();
+        }
+      } catch (e) {
+        console.warn('無法讀取 data/expenses.json');
+      }
+    }
+
+    async function commitExpensesToGitHub(updatedExpenses, commitMessage) {
+      const pat = localStorage.getItem('busan_gh_pat');
+      if (!pat) {
+        alert('請先在上方輸入 GitHub Personal Access Token (PAT) 才能進行同步！');
+        return false;
+      }
+
+      const saveBtnText = document.getElementById('save-btn-text');
+      saveBtnText.innerText = '正在同步至 GitHub...';
+
+      try {
+        const jsonString = JSON.stringify(updatedExpenses, null, 2);
+        const encodedContent = btoa(unescape(encodeURIComponent(jsonString)));
+
+        const payload = {
+          message: commitMessage,
+          content: encodedContent,
+          sha: currentFileSha,
+          branch: GH_BRANCH
+        };
+
+        const res = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE_PATH}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${pat}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          const result = await res.json();
+          currentFileSha = result.content.sha;
+          expensesData = updatedExpenses;
+          renderExpenses();
+          alert('成功同步至 GitHub！ Commit 已自動生成。');
+          return true;
+        } else {
+          const errData = await res.json();
+          alert(`同步失敗：${errData.message || '請檢查 Token 權限'}`);
+          return false;
+        }
+      } catch (e) {
+        alert('網路請求失敗');
+        return false;
+      } finally {
+        saveBtnText.innerText = '新增記帳 (同步 GitHub)';
+      }
+    }
+
+    async function saveExpenseToGitHub() {
+      const editId = document.getElementById('editing-expense-id').value;
+      const title = document.getElementById('expense-title').value.trim();
+      const amount = parseFloat(document.getElementById('expense-amount').value);
+      const payer = document.getElementById('expense-payer').value;
+
+      if (!title || isNaN(amount) || amount <= 0) {
+        alert('請填寫有效的項目與金額！');
+        return;
+      }
+
+      let newExpenses = [...expensesData];
+      let commitMsg = '';
+
+      if (editId) {
+        const itemKey = isNaN(Number(editId)) ? editId : Number(editId);
+        const index = newExpenses.findIndex(item => (item.id || item.title) === itemKey);
+        if (index !== -1) {
+          newExpenses[index] = { id: itemKey, title, amount, payer };
+          commitMsg = `Update expense: ${title} (₩${amount.toLocaleString()}) by ${payer}`;
+        }
+      } else {
+        const newItem = { id: Date.now(), title, amount, payer };
+        newExpenses.push(newItem);
+        commitMsg = `Add expense: ${title} (₩${amount.toLocaleString()}) by ${payer}`;
+      }
+
+      const success = await commitExpensesToGitHub(newExpenses, commitMsg);
+      if (success) {
+        cancelEditMode();
+      }
+    }
+
+    async function deleteExpenseItem(id) {
+      const itemToDelete = expensesData.find(item => (item.id || item.title) === id || item.id === Number(id));
+      if (!itemToDelete) return;
+
+      if (confirm(`確定要刪除「${itemToDelete.title}」這筆記錄嗎？`)) {
+        const newExpenses = expensesData.filter(item => (item.id || item.title) !== id && item.id !== Number(id));
+        const commitMsg = `Delete expense: ${itemToDelete.title} by ${itemToDelete.payer}`;
+        await commitExpensesToGitHub(newExpenses, commitMsg);
+      }
+    }
+
+    function renderExpenses() {
+      const listContainer = document.getElementById('expense-list');
+      const totalContainer = document.getElementById('total-expense-krw');
+      let totalKRW = 0;
+
+      if (expensesData.length === 0) {
+        listContainer.innerHTML = `<p class="text-center text-pixel-blue/50 py-4 font-pixel text-xs">尚無記帳記錄</p>`;
+      } else {
+        listContainer.innerHTML = expensesData.map(item => {
+          const displayAmount = item.amount || Math.round(item.amount_twd * currentRate);
+          totalKRW += displayAmount;
+          const itemKey = item.id || item.title;
+
+          return `
+            <div class="flex justify-between items-center bg-pixel-cream/30 p-2 rounded border border-pixel-blue/30">
+              <div class="min-w-0 flex-1 mr-2">
+                <span class="font-bold text-pixel-blue truncate block">${item.title}</span>
+                <span class="text-[10px] bg-pixel-blue/10 px-1.5 py-0.5 rounded text-pixel-blue">${item.payer}</span>
+                ${item.amount_twd ? `<span class="text-[10px] text-gray-500 ml-1">(NT$${item.amount_twd})</span>` : ''}
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <span class="font-bold text-pixel-red">₩${displayAmount.toLocaleString()}</span>
+                <button onclick="startEditExpense('${itemKey}')" class="text-pixel-blue/60 hover:text-pixel-blue p-1" title="編輯此項">
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+                <button onclick="deleteExpenseItem('${itemKey}')" class="text-pixel-blue/40 hover:text-pixel-red p-1" title="刪除此項">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      totalContainer.innerText = `₩${totalKRW.toLocaleString()}`;
+    }
+
+    function startEditExpense(id) {
+      const itemToEdit = expensesData.find(u => (u.id || u.title) === id || u.id === Number(id));
+      if (!itemToEdit) return;
+
+      document.getElementById('editing-expense-id').value = itemToEdit.id || itemToEdit.title;
+      document.getElementById('expense-title').value = itemToEdit.title;
+      document.getElementById('expense-amount').value = itemToEdit.amount || Math.round(itemToEdit.amount_twd * currentRate);
+      document.getElementById('expense-payer').value = itemToEdit.payer;
+
+      document.getElementById('form-title').innerHTML = `<i class="fa-solid fa-pen-to-square mr-1"></i> 編輯花費項目`;
+      document.getElementById('save-btn-text').innerText = '儲存變更 (同步 GitHub)';
+      document.getElementById('cancel-edit-btn').classList.remove('hidden');
+    }
+
+    function cancelEditMode() {
+      document.getElementById('editing-expense-id').value = '';
+      document.getElementById('expense-title').value = '';
+      document.getElementById('expense-amount').value = '';
+      document.getElementById('expense-payer').value = 'Kuan';
+
+      document.getElementById('form-title').innerHTML = `<i class="fa-solid fa-pen-to-square mr-1"></i> 新增花費記錄`;
+      document.getElementById('save-btn-text').innerText = '新增記帳 (同步 GitHub)';
+      document.getElementById('cancel-edit-btn').classList.add('hidden');
+    }
+
     function renderPixelFlipClockHTML(days, hours, minutes, seconds) {
       const pad = (n) => String(n).padStart(2, '0');
       
@@ -433,7 +673,6 @@
       `;
     }
 
-    // 動態更新當前畫面中所有像素翻頁時鐘
     function updateFlightCountdowns() {
       const now = new Date().getTime();
 
@@ -456,7 +695,6 @@
       });
     }
 
-    // 取得目前韓國當地時間 (Asia/Seoul)
     function getKoreaCurrentTimeInfo() {
       const now = new Date();
       const options = { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false };
@@ -471,7 +709,6 @@
       return { dateStr, currentMinutesTotal };
     }
 
-    // 判斷行程是否進行中
     function isSpotCurrentActive(spotDateStr, spotTimeRangeStr) {
       const krInfo = getKoreaCurrentTimeInfo();
       if (spotDateStr !== krInfo.dateStr) return false;
@@ -490,18 +727,6 @@
       const endMins = parseMinutes(times[1]);
 
       return krInfo.currentMinutesTotal >= startMins && krInfo.currentMinutesTotal <= endMins;
-    }
-
-    async function fetchPresetExpenses() {
-      try {
-        const res = await fetch('data/expenses.json');
-        if (res.ok) {
-          presetExpenses = await res.json();
-          renderExpenses();
-        }
-      } catch (e) {
-        console.warn('未讀取到 data/expenses.json');
-      }
     }
 
     async function fetchLiveExchangeRate() {
@@ -594,12 +819,11 @@
           return `<span class="inline-block border-2 px-2 py-0.5 rounded text-xs font-pixel mr-1 ${bgClass}"><i class="fa-solid fa-user text-[10px] mr-1"></i>${t}</span>`;
         }).join('') : '';
 
-        // 像素風翻頁倒數卡片區塊
         const flightCountdownsHtml = spot.flight_countdowns && spot.flight_countdowns.length > 0 ? `
           <div class="mt-4 p-3.5 bg-pixel-cream/60 border-2 border-pixel-blue rounded-xl space-y-2">
             <p class="text-xs font-pixel text-pixel-blue font-bold uppercase flex items-center gap-1.5">
               <i class="fa-solid fa-clock text-pixel-red"></i>
-              <span>航班起飛倒數：</span>
+              <span>航班起飛 / 抵達像素倒數：</span>
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
               ${spot.flight_countdowns.map(cd => `
@@ -615,7 +839,6 @@
           </div>
         ` : '';
 
-        // 機場設施
         const airportFacilitiesHtml = spot.airport_facilities && spot.airport_facilities.length > 0 ? `
           <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30 space-y-3">
             <p class="text-xs font-pixel text-pixel-blue font-bold uppercase"><i class="fa-solid fa-plane-departure mr-1 text-pixel-red"></i>機場熱門設施與咖啡推薦：</p>
@@ -647,7 +870,6 @@
           </div>
         ` : '';
 
-        // 下午茶推薦
         const cafesHtml = spot.cafe_list && spot.cafe_list.length > 0 ? `
           <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30 space-y-2">
             <p class="text-xs font-pixel text-pixel-red uppercase flex items-center gap-1"><i class="fa-solid fa-mug-hot mr-1"></i>特色下午茶 / 麵包店推薦：</p>
@@ -667,7 +889,6 @@
           </div>
         ` : '';
 
-        // 行程相片藝廊
         const photosHtml = spot.photos && spot.photos.length > 0 ? `
           <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30">
             <p class="text-xs font-pixel text-pixel-blue/70 mb-2"><i class="fa-solid fa-camera mr-1"></i>景點相片與備忘：</p>
@@ -679,7 +900,6 @@
           </div>
         ` : '';
 
-        // 交通轉乘
         const transitHtml = spot.transit_options && spot.transit_options.length > 0 ? `
           <div class="mt-4 pt-3 border-t-2 border-dashed border-pixel-blue/30 space-y-2">
             <p class="text-xs font-pixel text-pixel-blue/70 uppercase"><i class="fa-solid fa-route mr-1"></i>交通與轉乘方式：</p>
@@ -718,7 +938,6 @@
           </div>
         ` : '';
 
-        // 大字報按鈕
         let taxiBtnHtml = '';
         if (spot.taxi_cards && spot.taxi_cards.length > 0) {
           taxiBtnHtml = `
@@ -766,7 +985,6 @@
         `;
       }).join('');
 
-      // 每秒更新翻頁卡片數值
       updateFlightCountdowns();
       countdownInterval = setInterval(updateFlightCountdowns, 1000);
     }
@@ -806,90 +1024,16 @@
       }
     }
 
-    function addExpense() {
-      const title = document.getElementById('expense-title').value.trim();
-      const amount = parseFloat(document.getElementById('expense-amount').value);
-      const payer = document.getElementById('expense-payer').value;
-
-      if (!title || isNaN(amount) || amount <= 0) {
-        alert('請填寫有效的項目與金額！');
-        return;
-      }
-
-      userExpenses.push({ id: Date.now(), title, amount, payer });
-      localStorage.setItem('busan_user_expenses', JSON.stringify(userExpenses));
-
-      document.getElementById('expense-title').value = '';
-      document.getElementById('expense-amount').value = '';
-      renderExpenses();
-    }
-
-    function renderExpenses() {
-      const listContainer = document.getElementById('expense-list');
-      const totalContainer = document.getElementById('total-expense-krw');
-      let totalKRW = 0;
-
-      const combinedExpenses = [
-        ...presetExpenses.map(p => ({ ...p, isPreset: true })),
-        ...userExpenses.map(u => ({ ...u, isPreset: false }))
-      ];
-
-      if (combinedExpenses.length === 0) {
-        listContainer.innerHTML = `<p class="text-center text-pixel-blue/50 py-4 font-pixel text-xs">尚無記帳記錄</p>`;
-      } else {
-        listContainer.innerHTML = combinedExpenses.map(item => {
-          const displayAmount = item.amount || Math.round(item.amount_twd * currentRate);
-          totalKRW += displayAmount;
-
-          return `
-            <div class="flex justify-between items-center bg-pixel-cream/30 p-2 rounded border border-pixel-blue/30">
-              <div>
-                <span class="font-bold text-pixel-blue">${item.title}</span>
-                <span class="text-[10px] bg-pixel-blue/10 px-1.5 py-0.5 rounded text-pixel-blue ml-1">${item.payer}</span>
-                ${item.amount_twd ? `<span class="text-[10px] text-gray-500 ml-1">(NT$${item.amount_twd})</span>` : ''}
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="font-bold text-pixel-red">₩${displayAmount.toLocaleString()}</span>
-                ${!item.isPreset ? `
-                  <button onclick="deleteUserExpense(${item.id})" class="text-pixel-blue/40 hover:text-pixel-red"><i class="fa-solid fa-trash-can"></i></button>
-                ` : `<span class="text-[10px] text-emerald-700 bg-emerald-100 px-1 rounded">預訂</span>`}
-              </div>
-            </div>
-          `;
-        }).join('');
-      }
-
-      totalContainer.innerText = `₩${totalKRW.toLocaleString()}`;
-    }
-
-    function deleteUserExpense(id) {
-      userExpenses = userExpenses.filter(item => item.id !== id);
-      localStorage.setItem('busan_user_expenses', JSON.stringify(userExpenses));
-      renderExpenses();
-    }
-
-    function clearCustomExpenses() {
-      if (confirm('確定要清空現場新增的手動花費嗎？（預設行程花費不受影響）')) {
-        userExpenses = [];
-        localStorage.removeItem('busan_user_expenses');
-        renderExpenses();
-      }
-    }
-
     function exportExpensesToCSV() {
-      const combined = [
-        ...presetExpenses.map(p => ({ title: p.title, amount: p.amount || Math.round(p.amount_twd * currentRate), payer: p.payer })),
-        ...userExpenses.map(u => ({ title: u.title, amount: u.amount, payer: u.payer }))
-      ];
-
-      if (combined.length === 0) {
+      if (expensesData.length === 0) {
         alert('目前沒有記帳資料可供匯出！');
         return;
       }
 
       let csvContent = "\uFEFF項目,金額(KRW),付款人\n";
-      combined.forEach(item => {
-        csvContent += `"${item.title}",${item.amount},"${item.payer}"\n`;
+      expensesData.forEach(item => {
+        const amt = item.amount || Math.round(item.amount_twd * currentRate);
+        csvContent += `"${item.title}",${amt},"${item.payer}"\n`;
       });
 
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });

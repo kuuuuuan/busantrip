@@ -329,7 +329,7 @@
     "date": "2026-09-13",
     "time": "08:00 - 09:00",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "從飯店出發前往海雲台",
+    "spot_zh": "前往海雲台",
     "spot_kr": "해운대역",
     "naver_link": "https://naver.me/xN8J9Xz3",
     "notes": "建議早上 8:00 準時出發。大眾運輸約 2,100 韓元；搭計程車約 2 萬韓元（約台幣 500 元）。",
@@ -402,7 +402,7 @@
     "date": "2026-09-13",
     "time": "09:00 - 09:40",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "早餐： 密陽血腸豬肉湯飯 ",
+    "spot_zh": "早餐：密陽血腸豬肉湯飯 ",
     "spot_kr": "밀양순대돼지국밥 ",
     "naver_link": "https://naver.me/5T4ABsWP",
     "notes": "推薦：豬肉湯飯 ＆ 血腸湯飯（11,500韓元），剛上桌時先放白麵線 → 加辣韭菜、蝦醬調整風味。",
@@ -413,7 +413,7 @@
     "date": "2026-09-13",
     "time": "09:40 - 11:30",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "海雲台商圈散策 & 前往膠囊列車搭乘處",
+    "spot_zh": "海雲台散策 & <br>前往膠囊列車搭乘處",
     "spot_kr": "해운대 구남로 & 미포정거장",
     "naver_link": "https://naver.me/FafyrnAe",
     "notes": "必逛：hetras、Amore、橡樹似顏繪(7,000/人，只收現金)、OPS麵包店、米菲兔店<br>沿途步行至膠囊列車約 30 分鐘，可買咖啡/小吃，需提早抵達預留排隊時間。",
@@ -441,7 +441,7 @@
     "date": "2026-09-13",
     "time": "12:00 - 12:30",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "搭乘天空膠囊列車 (尾浦站 → 青沙浦站)",
+    "spot_zh": "搭乘膠囊列車 <br>(尾浦站 → 青沙浦站)",
     "spot_kr": "해운대블루라인파크 미포정거장",
     "naver_link": "https://naver.me/5vI34xKL",
     "notes": "2F搭乘，搭乘時間約 30 分鐘。務必預留現場排隊入場時間。",
@@ -469,7 +469,7 @@
     "spot_zh": "青沙浦散策 & 返回車站周邊（古來思魚糕）",
     "spot_kr": "청사포 & 고래사어묵 해운대점",
     "naver_link": "https://naver.me/F8luCRFz",
-    "notes": "周邊有許多賞海咖啡廳、必拍紅白燈塔＆消波塊，必買伴手禮 Clam Sand Busan ＆ 紀念品 Busan Super<br>【回程】釜山PASS 免費搭海岸列車至尾浦，需乘坐 12:42 或 13:12 車次。經過古來思魚糕海雲臺店 (고래사어묵) 可以買魚板當小點心。",
+    "notes": "周邊有許多賞海咖啡廳、必拍<b>紅白燈塔＆消波塊</b>，必買伴手禮 Clam Sand Busan ＆ 紀念品 Busan Super <br>【回程】釜山PASS 免費搭海岸列車至尾浦，需乘坐 12:42 或 13:12 車次。經過古來思魚糕海雲臺店 (고래사어묵) 可以買魚板當小點心。",
     "photos": ["images/青沙浦.jpg"],
     "transit_options": [
       {
@@ -496,7 +496,7 @@
     "spot_zh": "午餐：小香燉牛排骨 / Solsot 釜飯",
     "spot_kr": "소향갈비찜 / 솔솥 해운대점",
     "naver_link": "https://naver.me/xXrX4X11",
-    "notes": "【優先】catchtable APP 已預訂 14:00 小香燉牛排骨 （套餐 29,000 韓元/人）<br> 【備案】Solsot 釜飯預約已滿，需看現場等候時間。",
+    "notes": "<br>【優先】catchtable APP 已預訂 14:00 小香燉牛排骨 （套餐 29,000 韓元/人）<br> 【備案】Solsot 釜飯預約已滿，需看現場等候時間。",
     "photos": ["images/牛排骨.jpg"],
     "transit_options": []
   },
@@ -554,7 +554,7 @@
     "spot_zh": "廣安里 Working Holiday 看日落",
     "spot_kr": "워킹홀리데이 민락",
     "naver_link": "https://naver.me/FP8XeWYp",
-    "notes": "日落時間約18:10-18:40；廣安大橋第一排海景咖啡廳。未預約訂位，抵達後需現場抽號碼牌！",
+    "notes": "日落時間約 18:10-18:40；廣安大橋第一排海景咖啡廳。未預約訂位，抵達後需現場抽號碼牌！",
     "transit_options": []
   },
   {
@@ -577,7 +577,7 @@
     "spot_zh": "晚餐：廣安里 고결 高潔(烤肉)",
     "spot_kr": "고결 광안점",
     "naver_link": "https://naver.me/xXrX4X11",
-    "notes": "營業時間：16:00 - 24:00。主打稻草煙燻，可點豬肉3份+大醬湯+石鍋拌飯/炒飯=約700台幣/人。",
+    "notes": "營業時間 16:00 - 24:00。主打稻草煙燻，可點豬肉3份+大醬湯+石鍋拌飯/炒飯=約700台幣/人。",
     "photos": ["images/高潔牛肋骨.jpg","images/高潔.jpg"],
     "transit_options": [
       {
@@ -773,7 +773,7 @@
     "date": "2026-09-14",
     "time": "12:30 - 13:30",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "午餐： ARP 米其林蔬食料理 ",
+    "spot_zh": "午餐： ARP 蔬食料理 ",
     "spot_kr": "아르프 (ARP) ",
     "naver_link": "https://naver.me/GubwiGT0",
     "notes": "ARP 為米其林必比登推薦蔬食餐廳，已預訂 12:30 (NaverMap)。<br> ［推薦］ 蕨菜義大利麵 (Bracken Pasta)、烤娃娃菜與蘑菇碎 (Grilled Napa Cabbage)",
@@ -914,7 +914,7 @@
     "date": "2026-09-14",
     "time": "18:20 - 19:00",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "晚餐： 南浦雪濃湯 (南浦站周邊)",
+    "spot_zh": "晚餐： 南浦雪濃湯",
     "spot_kr": "남포설렁탕",
     "naver_link": "https://naver.me/GctrSsLb",
     "notes": "營業24小時，如果還不餓的話也可以晚點吃。<br>［推薦］招牌雪濃湯설렁탕 10,000₩、排骨蒸餃 갈비만두 3,000₩",
@@ -926,10 +926,10 @@
     "date": "2026-09-14",
     "time": "19:00 - 21:00",
     "travelers": ["Kuan", "Lily"],
-    "spot_zh": "南浦洞散策 (光復路 ＆ BIFF 廣場 ＆ 富平罐頭市場)",
-    "spot_kr": "광복로패션거리 & BIFF광장",
+    "spot_zh": "南浦洞散策",
+    "spot_kr": "광복로패션거리 & BIFF광장 & 부평깡통시장",
     "naver_link": "https://naver.me/xXrX4X11",
-    "notes": "1. 光復路時尚街 → EPT 球鞋店巷口轉彎 (赤峰街風格小店)。 <br>　　　　2. BIFF 廣場必吃元祖黑糖餅。  <br>　　　　3. 富平罐頭市場（（從 BIFF 廣場步行約 10 分鐘，夜市營業到23:30） <br>　　　　【備案】Puradak 炸雞富平店（罐頭市場旁，營業至 23:00）。",
+    "notes": "<br>　1. 光復路時尚街 → EPT 球鞋店巷口轉彎 (赤峰街風格小店)。 <br>　2. BIFF 廣場必吃元祖黑糖餅。  <br>　3. 富平罐頭市場（從 BIFF 廣場步行約 10 分鐘，夜市營業到23:30） <br>　【備案】Puradak 炸雞富平店（罐頭市場旁，營業至 23:00）。",
     "photos": ["images/南浦洞攻略.jpg"],
     "transit_options": [
       {
@@ -1033,9 +1033,8 @@
     "date": "2026-09-15",
     "time": "08:30 - 10:30",
     "travelers": ["Lily"],
-    "spot_zh": "Lily 機場報到 & 搭機回台 (中華航空 CI191)",
+    "spot_zh": "Lily 搭機回台 (中華航空 CI191)",
     "spot_kr": "김해국제공항 (대한항공/중화항공 CI191)",
-    "naver_link": "https://naver.me/GNRjwFwb",
     "flight_countdowns": [
     {
       "label": "Lily 回程起飛 (華航 CI191)",
@@ -1058,9 +1057,8 @@
     "date": "2026-09-15",
     "time": "08:30 - 10:50",
     "travelers": ["Kuan"],
-    "spot_zh": "Kuan 機場報到 & 搭機回台 (釜山航空 BX793)",
+    "spot_zh": "Kuan 搭機回台 (釜山航空 BX793)",
     "spot_kr": "김해국제공항 (에어부산 BX793)",
-    "naver_link": "https://naver.me/GNRjwFwb",
     "notes": "Kuan 航班 BX793 預計 10:50 起飛，12:35 抵達台北桃園(TPE)。<br>【提醒】釜山航空誤點率較高，請留意登機口動態】。",
     "transit_options": []
   }
